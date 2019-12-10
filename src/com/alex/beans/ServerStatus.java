@@ -1,4 +1,4 @@
-package com.alex;
+package com.alex.beans;
 
 import java.io.Serializable;
 
