@@ -15,7 +15,7 @@ public class ReadFiles {
 	private static FileInputStream fis;
 	private static ObjectInputStream ois;
 	private static ArrayList<ServerStatus> result;
-	public static ArrayList<ServerStatus> readStatus() throws Error{
+	public static ArrayList<ServerStatus> readStatus() throws Exception{
 		try {
 			// create dir if it does not exist already
 			File savedir = new File("/tmp/servervars");
@@ -25,11 +25,7 @@ public class ReadFiles {
 				savedir.mkdirs();
 			}
 			File save = new File("/tmp/servervars/serverstatus.bin");
-			exists = save.exists();
-			// test to see if the file exists
-			if(!exists) {
-				throw new Error("server status is not currently known");
-			}
+			
 			
 			// create streams
 			fis = new FileInputStream(save);
@@ -44,9 +40,9 @@ public class ReadFiles {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			if(e.getClass().equals(IOException.class)) {
-				throw new Error("IO error");
+				throw e;
 			}else {
-				throw new Error("class not found");
+				throw e;
 			}
 			
 		} 

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>JSPApp</groupId>
   <artifactId>JSPApp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>war</packaging>
   <dependencies>
 	<dependency>
@@ -20,6 +20,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          
         </configuration>
       </plugin>
       <plugin>
@@ -28,6 +29,7 @@
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
           <failOnMissingWebXml>false</failOnMissingWebXml>
+          
         </configuration>
       </plugin>
     </plugins>
