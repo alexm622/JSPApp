@@ -1,4 +1,4 @@
-/build/
+build/
 !*.war
-/target/
-/libs/
+target/
+libs/
