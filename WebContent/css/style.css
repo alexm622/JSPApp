@@ -1,12 +1,24 @@
-.top {
-	background-color: blue;
+body{
+	color: #ca3e47;
+	background-color: #414141;
 }
 
-div{
-	outline: black;
+.top {
+	background-color: #313131;
+	border-radius: 25px;
+	padding: 25px;
 }
+
 .title{
 	font-size: 50;
 	font-family: Serif;
-	font-weight: 150
+	font-weight: 150;
+	text-align: center;
+}
+
+.status{
+	background-color: #525252;
+	height: 500;
+	font-size: 25;
+	font-weight: 50;
 }
