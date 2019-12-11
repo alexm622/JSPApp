@@ -1,0 +1,12 @@
+.top {
+	background-color: blue;
+}
+
+div{
+	outline: black;
+}
+.title{
+	font-size: 50;
+	font-family: Serif;
+	font-weight: 150
+}
