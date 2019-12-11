@@ -21,4 +21,6 @@ body{
 	height: 500;
 	font-size: 25;
 	font-weight: 50;
+	border-radius: 25px;
+	padding: 25px;
 }
