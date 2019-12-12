@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.alex.utils.ReadFiles, java.util.ArrayList, com.alex.beans.ServerStatus" %>
+<%@ page import="com.alex.utils.ReadFiles, java.util.ArrayList, com.alex.beans.ServerStatus, com.alex.utils.ParseToOutput" %>
 <!DOCTYPE html>
 <html>
 	<link rel="stylesheet" href="css/style.css">
@@ -15,15 +15,17 @@
 			</div>
 		</div >
 		<div class="status">
-			server status
-			<br>
+			<div class="status-title">
+				server status
+			</div>
+			
+			
 			<%
 			//this will be replaced by a better method
-			ArrayList<ServerStatus> ssList = ReadFiles.readStatus();
-			for(ServerStatus ss : ssList){
-				out.print(ss.toString() + "<br>");
+			ArrayList<String> output = ParseToOutput.parse(ReadFiles.readStatus());
+			for(String s : output){
+				out.print(s);
 			}
-			
 			%>
 		</div>
 		

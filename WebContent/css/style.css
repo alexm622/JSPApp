@@ -24,3 +24,20 @@ body{
 	border-radius: 25px;
 	padding: 25px;
 }
+
+.status-entry{
+	background-color: #ff4d00;
+	color: white;
+	border-radius: 25px;
+	padding: 25px;
+}
+
+.status-title{
+	font-size: 50;
+	font-family: Serif;
+	font-weight: 150;
+	text-align: center;
+	background-color: #313131;
+	border-radius: 5px;
+	
+}
