@@ -9,61 +9,61 @@ public class Games {
 	public static void init() {
 		
 		//minecraft
-		games.put(-1, "path-to-minecraft");
+		games.put(-1, "/images/minecraft");
 		
 		//tf2
-		games.put(440, "path-to-tf2");
+		games.put(440, "/images/tf2");
 		
 		//arma 3
-		games.put(107410, "path-to-arma-3");
+		games.put(107410, "/images/arma-3");
 		
 		//csgo
-		games.put(730, "path-to-csgo");
+		games.put(730, "/images/csgo");
 		
 		//rust
-		games.put(252490, "path-to-rust");
+		games.put(252490, "/images/rust");
 		
 		//factorio
-		games.put(427520, "path-to-factorio");
+		games.put(427520, "/images/factorio");
 		
 		//boogaloo
-		games.put(317360, "path-to-boogaloo");
+		games.put(317360, "/images/boogaloo");
 		
 		//fistfull of frags
-		games.put(265630, "path-to-fistfull-of-frags");
+		games.put(265630, "/images/fof");
 		
 		//gmod
-		games.put(4000, "path-to-gmod");
+		games.put(4000, "/images/gmod");
 		
 		//insurgency
-		games.put(222880, "path-to-insurgency");
+		games.put(222880, "/images/insurgency");
 		
 		//left 4 dead 
-		games.put(500, "path-to-l4d");
+		games.put(500, "/images/l4d");
 		
 		//left 4 dead 2
-		games.put(550, "path-to-l4d2");
+		games.put(550, "/images/l4d2");
 		
 		//minecraft bedrock
-		games.put(-2, "path-to-MC:BE");		
+		games.put(-2, "/images/bedrock");		
 		
 		//mordhau
-		games.put(629760, "path-to-mordhau");
+		games.put(629760, "/images/mordhau");
 		
 		//starbound
-		games.put(211820, "path-to-starbound");
+		games.put(211820, "/images/starbound");
 		
 		//terraria
-		games.put(105600, "path-to-terraria");
+		games.put(105600, "/images/terraria");
 		
 		//unturned
-		games.put(304930, "path-to-unturned");
+		games.put(304930, "/images/unturned");
 		
 		//7 days to die
-		games.put(251570, "path-to-7-days-to-die");
+		games.put(251570, "/images/7dtd");
 		
 		//ark
-		games.put(346110, "path-to-ark");
+		games.put(346110, "/images/ark");
 		
 	
 	}
