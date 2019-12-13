@@ -1,9 +1,12 @@
 package com.alex.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.jsp.JspWriter;
 
 import com.alex.beans.ServerStatus;
 import com.alex.constants.Games;
@@ -12,30 +15,17 @@ public class ParseToOutput {
 	
 	private ArrayList<ServerStatus> status;
 	Map<String, String> paths;
+	private JspWriter out;
 	
 	private String logo, banner;
 	
-	public ArrayList<String> parse(ArrayList<ServerStatus> status){
+	public void parse(ArrayList<ServerStatus> status, JspWriter out){
 		
-		paths = new HashMap<String, String>();
-		
-		ArrayList<String> output = new ArrayList<String>();
-		if(status.size() == 0) {
-			output.add("");
-			return output;
-		}
+		this.out = out;
 		
 		for(ServerStatus s : status) {
 			setBanner(s);
-			output.add("<div class=\"status-entry\">"  + parse(s) + "<br></div><br>");
-		}
-		
-		return output;
-	}
-	
-	private static String parse(ServerStatus s) {
-		
-		return s.toString();
+		}	
 	}
 	
 	private void setBanner(ServerStatus s) {
@@ -46,11 +36,28 @@ public class ParseToOutput {
 		
 		logo = path + "logo.png";
 		
+		String print;
 		
-		
+		print = "<div class=\"status-entry\">" + 
+				 
+				"	<table>" +
+				"		<tr>" +
+				"			<th>" +
+				"				<img src=\"" + logo + "\" style=\"height: 50px; width: 50px;\"></img>" + 
+				"			</th>" + 
+				"			<th style=\"width: 100%; \">" + 
+				s.toString() + 
+				"			</th>" +
+				"		</tr>" + 
+				"	</table>" + 
+				"</div>" +
+				"<br>";
+		try {
+			out.println(print);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
-	
-	
-
 }
