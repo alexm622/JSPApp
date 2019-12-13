@@ -1,3 +1,4 @@
+<%@page import="com.alex.constants.Games"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.alex.utils.ReadFiles, java.util.ArrayList, com.alex.beans.ServerStatus, com.alex.utils.ParseToOutput" %>
@@ -22,13 +23,13 @@
 			
 			<%
 			//this will be replaced by a better method
+			Games.init();
 			ParseToOutput po = new ParseToOutput();
-			ArrayList<String> output = po.parse(ReadFiles.readStatus());
-			for(String s : output){
-				out.print(s);
-			}
+			po.parse(ReadFiles.readStatus(), out);
+			
 			%>
+			
 		</div>
 		
 	</body>
-</html>
+</html>"
