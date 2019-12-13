@@ -5,11 +5,14 @@ RUN rm -r /usr/local/tomcat/conf
 
 
 EXPOSE 8080
+
 ADD JSPApp.war /usr/local/tomcat/webapps
 ADD docker/ServerStatusReader.jar /usr/local/tomcat
 
 RUN mkdir /tmp/servervars
 RUN chmod 777 /tmp/servervars
+
+
 
 ADD docker/conf /usr/local/tomcat/conf
 ADD docker/launchscript.sh /usr/local/tomcat/bin

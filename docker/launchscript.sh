@@ -1,4 +1,5 @@
 #!/bin/sh
 echo "hello"
-screen java -jar /usr/local/tomcat/ServerStatusReader.jar
+service ssh start
+java -jar /usr/local/tomcat/ServerStatusReader.jar
 #catalina.sh run
