@@ -1,12 +1,22 @@
 package com.alex.utils;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.alex.beans.ServerStatus;
+import com.alex.constants.Games;
 
 public class ParseToOutput {
 	
-	public static ArrayList<String> parse(ArrayList<ServerStatus> status){
+	private ArrayList<ServerStatus> status;
+	Map<String, String> paths;
+	
+	public ArrayList<String> parse(ArrayList<ServerStatus> status){
+		
+		paths = new HashMap<String, String>();
+		
 		ArrayList<String> output = new ArrayList<String>();
 		if(status.size() == 0) {
 			output.add("");
@@ -14,6 +24,7 @@ public class ParseToOutput {
 		}
 		
 		for(ServerStatus s : status) {
+			setBanner(s);
 			output.add("<div class=\"status-entry\">"  + parse(s) + "<br></div><br>");
 		}
 		
@@ -23,6 +34,17 @@ public class ParseToOutput {
 	private static String parse(ServerStatus s) {
 		
 		return s.toString();
+	}
+	
+	private static void setBanner(ServerStatus s) {
+		
+		String path = Games.games.get(s.getAppID());
+		
+		
+		
+		
+		
+		
 	}
 	
 	

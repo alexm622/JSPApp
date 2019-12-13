@@ -22,7 +22,8 @@
 			
 			<%
 			//this will be replaced by a better method
-			ArrayList<String> output = ParseToOutput.parse(ReadFiles.readStatus());
+			ParseToOutput po = new ParseToOutput();
+			ArrayList<String> output = po.parse(ReadFiles.readStatus());
 			for(String s : output){
 				out.print(s);
 			}
