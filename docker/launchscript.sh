@@ -3,8 +3,8 @@ echo "hello"
 #service ssh start
 java -jar /usr/local/tomcat/ServerStatusReader.jar &
 #catalina.sh run
-while [ True]:
+while :
 do
-   cat /tmp/servervars/serverstatus.bin
-   sleep 10
+	cat /tmp/servervars/serverstatus.bin
+	sleep 10
 done
