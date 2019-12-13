@@ -13,6 +13,8 @@ public class ParseToOutput {
 	private ArrayList<ServerStatus> status;
 	Map<String, String> paths;
 	
+	private String logo, banner;
+	
 	public ArrayList<String> parse(ArrayList<ServerStatus> status){
 		
 		paths = new HashMap<String, String>();
@@ -36,11 +38,13 @@ public class ParseToOutput {
 		return s.toString();
 	}
 	
-	private static void setBanner(ServerStatus s) {
+	private void setBanner(ServerStatus s) {
 		
 		String path = Games.games.get(s.getAppID());
 		
+		banner = path + "banner.png";
 		
+		logo = path + "logo.png";
 		
 		
 		
