@@ -13,9 +13,11 @@ public class StatusFormatter {
 	private ArrayList<ServerStatus> ssList;
 	
 	public StatusFormatter(JspWriter out) {
+		
 		this.out = out;
 		try {
 			ssList = ReadFiles.readStatus();
+			format();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
