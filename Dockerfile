@@ -15,4 +15,7 @@ ADD conf /usr/local/tomcat/conf
 ADD launchscript.sh /usr/local/tomcat/bin
 RUN chmod 777 /usr/local/tomcat/bin/launchscript.sh
 RUN dos2unix /usr/local/tomcat/bin/launchscript.sh
+
+ADD serverstatus.bin /tmp/servervars/
+
 ENTRYPOINT ["/usr/local/tomcat/bin/launchscript.sh"]
