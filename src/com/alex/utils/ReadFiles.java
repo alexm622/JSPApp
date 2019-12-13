@@ -44,10 +44,7 @@ public class ReadFiles {
 			}else {
 				throw e;
 			}
-			
 		} 
-		
-		
 	}
 	
 	
