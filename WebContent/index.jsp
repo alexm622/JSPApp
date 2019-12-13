@@ -7,18 +7,19 @@
 	<link rel="stylesheet" href="css/style.css">
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Server Status Homepage</title>
 	</head>
-	<body class="container">
+	<body class="container color4">
 		<div class="top-container">
-			<div class="top">
-				<div class="title">Server Status</div>
+			<div class="top color3">
+				<div class="title center">Server Status</div>
 			</div>
 		</div >
-		<div class="status">
-			<div class="status-title">
-				server status
+		<div class="status color2">
+			<div class="status-title color3 center">
+				Servers
 			</div>
+			<br>
 			
 			
 			<%
@@ -30,6 +31,8 @@
 			%>
 			
 		</div>
-		
+		<div class="center">
+			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a>
+		</div>
 	</body>
-</html>"
+</html>

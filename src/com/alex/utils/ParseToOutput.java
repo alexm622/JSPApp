@@ -38,7 +38,7 @@ public class ParseToOutput {
 		
 		String print;
 		
-		print = "<div class=\"status-entry\">" + 
+		print = "<div class=\"status-entry color1\">" + 
 				 
 				"	<table>" +
 				"		<tr>" +
