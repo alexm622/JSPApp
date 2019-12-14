@@ -11,7 +11,7 @@ ADD JSPApp.war /usr/local/tomcat/webapps
 RUN mv /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/Homepage
 RUN mv /usr/local/tomcat/webapps/JSPApp.war /usr/local/tomcat/webapps/ROOT.war
 ADD docker/ServerStatusReader.jar /usr/local/tomcat
-ADD mkdir /usr/local/tomcat/webapps/hosted
+RUN mkdir /usr/local/tomcat/webapps/hosted
 ADD docker/Racks.csv /usr/local/tomcat/webapps/hosted/
 ADD docker/hosts.bin /usr/local/tomcat/webapps/hosted/
 
