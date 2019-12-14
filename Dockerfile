@@ -11,6 +11,9 @@ ADD JSPApp.war /usr/local/tomcat/webapps
 RUN mv /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/Homepage
 RUN mv /usr/local/tomcat/webapps/JSPApp.war /usr/local/tomcat/webapps/ROOT.war
 ADD docker/ServerStatusReader.jar /usr/local/tomcat
+ADD mkdir /usr/local/tomcat/webapps/hosted
+ADD docker/Racks.csv /usr/local/tomcat/webapps/hosted/
+ADD docker/hosts.bin /usr/local/tomcat/webapps/hosted/
 
 RUN mkdir /tmp/servervars
 RUN chmod 777 /tmp/servervars
@@ -25,5 +28,6 @@ RUN dos2unix /usr/local/tomcat/bin/launchscript.sh
 
 
 ADD docker/serverstatus.bin /tmp/servervars/
+
 
 ENTRYPOINT ["/usr/local/tomcat/bin/launchscript.sh"]
