@@ -2,11 +2,15 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+	<link rel="stylesheet" href="css/style.css">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body class="container color4">
 
-</body>
+	<div>
+	sdsdf
+	</div>
+	</body>
 </html>
