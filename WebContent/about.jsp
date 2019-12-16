@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<div class="top color2">
-			<div class="bordered color3">
+			<div class="top color3">
 				<h1 style="font-size: 20pt" class="Left">What is this site?</h1>
 				this site was create by Alex Comeau to display the status of steam servers which he owns			
 			</div>
