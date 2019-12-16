@@ -7,9 +7,7 @@ RUN rm -r /usr/local/tomcat/webapps/ROOT/favicon.ico
 
 EXPOSE 8080
 
-ADD JSPApp.war /usr/local/tomcat/webapps
 RUN mv /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/Homepage
-RUN mv /usr/local/tomcat/webapps/JSPApp.war /usr/local/tomcat/webapps/ROOT.war
 ADD docker/ServerStatusReader.jar /usr/local/tomcat
 RUN mkdir /usr/local/tomcat/webapps/hosted
 ADD docker/Racks.csv /usr/local/tomcat/webapps/hosted/
@@ -29,5 +27,8 @@ RUN dos2unix /usr/local/tomcat/bin/launchscript.sh
 
 ADD docker/serverstatus.bin /tmp/servervars/
 
+ADD JSPApp.war /usr/local/tomcat/webapps
+
+RUN mv /usr/local/tomcat/webapps/JSPApp.war /usr/local/tomcat/webapps/ROOT.war
 
 ENTRYPOINT ["/usr/local/tomcat/bin/launchscript.sh"]
