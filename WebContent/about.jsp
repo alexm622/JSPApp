@@ -9,17 +9,17 @@
 	</head>
 	<body class="container color4">
 		<div class="top-container ">
-			<div class="bordered color3">
+			<div class="color3 top">
 				<div class="title center">About This Website</div>
 			</div>
 		</div>
-		<div class="status color2">
+		<div class="top color2">
 			<div class="bordered color3">
 				<h1 style="font-size: 20pt" class="Left">What is this site?</h1>
 				this site was create by Alex Comeau to display the status of steam servers which he owns			
 			</div>
 			<br>
-			<div class="bordered color3">
+			<div class="top color3">
 				<h1 style="font-size: 20pt" class="Left">What was used to make this site?</h1>
 				<h2 style="font-size: 15pt">
 					to create the site's main webpages i used
@@ -34,7 +34,7 @@
 				</h2>
 			</div>
 			<br>
-			<div class="bordered color3">
+			<div class="top color3">
 				<h1 style="font-size: 20pt" class="Left">How is this site hosted?</h1>
 				<h2 style="font-size: 15pt">
 					This site is hosted within a Docker Container running Apache Tomcat, the server hosting program made specifically for JSP.
@@ -45,7 +45,7 @@
 				</h2>
 			</div>
 			<br>
-			<div class="bordered color3">
+			<div class="top color3">
 				<h1 style="font-size: 20pt" class="Left">Resources Used</h1>
 				<a href="http://tomcat.apache.org/">Apache Tomcat</a>: This was the chosen webserver program for hosting the server <br>
 				
@@ -65,7 +65,7 @@
 				
 			</div>
 			<br>
-			<div class="bordered color3">
+			<div class="top color3">
 				<h1 style="font-size: 20pt" class="Left">The GitHub repository</h1>
 				Is located  <a href="https://github.com/alexm622/JSPApp">here</a>			
 			</div>

@@ -11,7 +11,7 @@
 	</head>
 	<body class="container color4">
 		<div class="top-container">
-			<div class="bordered color3">
+			<div class="top color3">
 				<div class="title center">Server Status</div>
 			</div>
 		</div >
