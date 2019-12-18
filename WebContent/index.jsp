@@ -24,7 +24,7 @@
 			
 			<%
 			//this will be replaced by a better method
-			Games.init();
+			
 			ParseToOutput po = new ParseToOutput();
 			po.parse(ReadFiles.readStatus(), out);
 			
