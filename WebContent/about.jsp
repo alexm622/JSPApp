@@ -49,7 +49,7 @@
 				<h1 style="font-size: 20pt" class="Left">Resources Used</h1>
 				<a href="http://tomcat.apache.org/">Apache Tomcat</a>: This was the chosen webserver program for hosting the server <br>
 				
-				<a href="https://docker.com">Docker</a>: This is the thing that the tomcat server was running in <br>
+				<a href="https://docker.com">Docker</a>: This is the thing that the tomcat server was running in<br>
 				
 				<a href="https://ubuntu.com/">Ubuntu</a>: This was the operating system that the Docker Container ran in <br>
 				
@@ -61,7 +61,7 @@
 				
 				<a href="https://github.com/ribasco/async-gamequery-lib">Async GameQuery Library</a>: This was for getting the list of running servers<br>
 				
-				<a href="https://github.com">GitHub</a>: This made it so I could develop the server on two different computers and keep the changes synchronized between the two computers <br>
+				<a href="https://github.com">GitHub</a>: This made it so I could develop the server on two different computers and keep the changes synchronized between multiple computers <br>
 				
 			</div>
 			<br>
