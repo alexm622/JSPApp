@@ -10,6 +10,7 @@ import javax.servlet.jsp.JspWriter;
 
 import com.alex.beans.ServerStatus;
 import com.alex.constants.Games;
+import com.alex.constants.Icons;
 
 public class ParseToOutput {
 	
@@ -20,7 +21,8 @@ public class ParseToOutput {
 	private String logo, banner;
 	
 	public void parse(ArrayList<ServerStatus> status, JspWriter out){
-		
+		Games.init();
+		Icons.init();
 		this.out = out;
 		
 		for(ServerStatus s : status) {
@@ -36,6 +38,16 @@ public class ParseToOutput {
 		
 		logo = path + "logo.png";
 		
+		String vac;
+		
+		if(s.isSecure()) {
+			vac = Icons.icons.get("green-check");
+		}else {
+			vac = Icons.icons.get("red-x");
+		}
+		
+		
+		
 		String print;
 		
 		print = "<div class=\"status-entry color1\">" + 
@@ -48,6 +60,8 @@ public class ParseToOutput {
 				"			<th style=\"width: 100%; \">" + 
 				s.toString() + 
 				"			</th>" +
+				"			<th>" +
+				"Vac Status: <img src=\"" + vac + "\" style=\"height: 50px; width: 50px;\"></img>" + 
 				"		</tr>" + 
 				"	</table>" + 
 				"</div>" +
