@@ -17,15 +17,16 @@ public class ReadFiles {
 	private static ArrayList<ServerStatus> result;
 	public static ArrayList<ServerStatus> readStatus() throws Exception{
 		try {
-			// create dir if it does not exist already
+/*			// create dir if it does not exist already
 			File savedir = new File("/tmp/servervars");
 			boolean exists = savedir.exists();
 			// create dirs if not existing
+
 			if(!exists) {
 				savedir.mkdirs();
-			}
+			}*/
 			File save = new File("/tmp/servervars/serverstatus.bin");
-			
+			save.setWritable(false);
 			
 			// create streams
 			fis = new FileInputStream(save);
