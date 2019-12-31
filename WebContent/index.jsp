@@ -1,3 +1,4 @@
+<%@page import="com.alex.utils.ReadFromSql"%>
 <%@page import="com.alex.constants.Games"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -26,7 +27,7 @@
 			//this will be replaced by a better method
 			
 			ParseToOutput po = new ParseToOutput();
-			po.parse(ReadFiles.readStatus(), out);
+			po.parse(ReadFromSql.read(out), out);
 			
 			%>
 			
