@@ -11,7 +11,7 @@ public class ReadFromSql {
 	
 	
 	
-	public static ArrayList<ServerStatus> read(JspWriter out) throws Exception{
+	public static ArrayList<ServerStatus> read() throws Exception{
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		
@@ -27,11 +27,11 @@ public class ReadFromSql {
 		
 		
 		
-		return toBeans(rs, con, out);
+		return toBeans(rs, con);
 	}
 	
-	private static ArrayList<ServerStatus> toBeans(ResultSet rs, Connection con, JspWriter out) throws Exception{
-		
+	private static ArrayList<ServerStatus> toBeans(ResultSet rs, Connection con) throws Exception{
+		System.out.println("reading from sql"); 
 		ArrayList<ServerStatus> ssl = new ArrayList<ServerStatus>();
 		while(rs.next()) {
 			ServerStatus ss = new ServerStatus();
@@ -47,7 +47,8 @@ public class ReadFromSql {
 			ss.setServerID(rs.getLong(10));
 			ss.setDedicated(rs.getBoolean(11));
 			ss.setSecure(rs.getBoolean(12));
-			out.print(ss.toString());
+			
+			
 			ssl.add(ss);
 		}
 		

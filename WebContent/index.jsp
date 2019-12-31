@@ -27,7 +27,7 @@
 			//this will be replaced by a better method
 			
 			ParseToOutput po = new ParseToOutput();
-			po.parse(ReadFromSql.read(out), out);
+			po.parse(ReadFromSql.read(), out);
 			
 			%>
 			
