@@ -13,11 +13,22 @@ public class ReadFromSql {
 	
 	public static ArrayList<ServerStatus> read() throws Exception{
 		
+		
+		
 		Class.forName("com.mysql.jdbc.Driver");
 		
-		Connection con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
+		Connection con;
+		
+		if(Snippits.getExternalIp() == "73.17.34.121") {
+			//connect across local network
+			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
+		}else {
+			//access using special remote account
+			con = DriverManager.getConnection("jdbc:mysql://73.17.34.121:3306/gameserver", "remote", Snippits.readPassword());
+		}
 		
 		
+		//read the servervars server
 		String sql = "SELECT * FROM servervars";
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
