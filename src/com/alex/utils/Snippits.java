@@ -5,16 +5,25 @@ import java.io.*;
 
 public class Snippits {
 	
-	public static String getExternalIp() throws Exception{
-		
-
-		URL whatismyip = new URL("http://checkip.amazonaws.com");
-		BufferedReader in = new BufferedReader(new InputStreamReader(
-		                whatismyip.openStream()));
-
-		String ip = in.readLine(); //you get the IP as a String
-		return ip;
-	}
+	public static String getExternalIp() throws Exception {
+        URL whatismyip = new URL("http://checkip.amazonaws.com");
+        
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new InputStreamReader(
+                    whatismyip.openStream()));
+            String ip = in.readLine();
+            return ip;
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 	
 	public static String readPassword() throws Exception{
 		File file = new File("C:\\Data\\sqlpassword.txt");

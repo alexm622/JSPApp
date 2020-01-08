@@ -18,8 +18,8 @@ public class ReadFromSql {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		Connection con;
-		
-		if(Snippits.getExternalIp() == "73.17.34.121") {
+		String extern = "73.17.34.121";
+		if(Snippits.getExternalIp().equals(extern)) {
 			//connect across local network
 			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
 		}else {
