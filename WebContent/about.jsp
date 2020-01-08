@@ -72,5 +72,13 @@
 			</div>
 			
 		</div>
+		<br>
+		<div class="top color3">
+		<h1 style="font-size: 20pt" class="Left">test script</h1>
+		<%
+		out.println(Snippits.getExternalIp());
+		out.println((Snippits.getExternalIp() == "73.17.34.121"));
+		 %>
+		</div>
 	</body>
 </html>
