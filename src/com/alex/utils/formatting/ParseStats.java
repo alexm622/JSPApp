@@ -39,6 +39,7 @@ public class ParseStats {
 			
 			
 			for(Pair<Long, Double> p : arrayList) {
+				
 				// get the long and doubles from the pair
 				Long l = p.getLeft();
 				Double d = p.getRight();
@@ -48,6 +49,7 @@ public class ParseStats {
 				
 				
 				if(!sorted.containsKey(l)) { //test if there is not an entry under that key (l)
+					
 					//make a new arraylist containing pairs
 					byappid = new ArrayList<Pair<String,Double>>();
 					
@@ -56,7 +58,9 @@ public class ParseStats {
 					
 					//put the arraylist into the hashmap
 					sorted.put(l, byappid);
+					
 				}else { // if the key does exist
+					
 					//get the value stored in the hashmap under the current key
 					byappid = sorted.get(l);
 					
