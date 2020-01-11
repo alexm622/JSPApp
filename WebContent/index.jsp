@@ -1,8 +1,8 @@
-<%@page import="com.alex.utils.ReadFromSql"%>
+<%@page import="com.alex.utils.sql.ReadStatuses"%>
 <%@page import="com.alex.constants.Games"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.alex.utils.ReadFiles, java.util.ArrayList, com.alex.beans.ServerStatus, com.alex.utils.ParseToOutput" %>
+<%@ page import="com.alex.utils.ReadFiles,java.util.ArrayList,com.alex.beans.ServerStatus,com.alex.utils.ParseToOutput" %>
 <!DOCTYPE html>
 <html>
 	<link rel="stylesheet" href="css/style.css">
@@ -24,16 +24,15 @@
 			
 			
 			<%
-			//this will be replaced by a better method
-			
-			ParseToOutput po = new ParseToOutput();
-			po.parse(ReadFromSql.read(), out);
-			
-			%>
+										//this will be replaced by a better method
+										
+										ParseToOutput po = new ParseToOutput();
+										po.parse(ReadStatuses.read(), out);
+									%>
 			
 		</div>
 		<div class="center">
-			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a>
+			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a> | <a href="stats.jsp">Statistics</a>
 		</div>
 	</body>
 </html>
