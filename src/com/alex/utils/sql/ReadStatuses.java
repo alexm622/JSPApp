@@ -42,6 +42,7 @@ public class ReadStatuses {
 		return toBeans(rs, con);
 	}
 	
+	//convert the resultset to the java beans
 	private static ArrayList<ServerStatus> toBeans(ResultSet rs, Connection con) throws Exception{
 		System.out.println("reading from sql"); 
 		ArrayList<ServerStatus> ssl = new ArrayList<ServerStatus>();
