@@ -72,7 +72,7 @@ public class ParseStats {
 		}
 		
 		
-		return null;
+		return sorted;
 	}
 	
 	private static String format(long appid,  HashMap<Long, ArrayList<Pair<String, Double>>> values) {
