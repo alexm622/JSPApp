@@ -2,7 +2,7 @@
 <%@page import="com.alex.constants.Games"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.alex.utils.ReadFiles,java.util.ArrayList,com.alex.beans.ServerStatus,com.alex.utils.ParseToOutput" %>
+<%@ page import="com.alex.utils.ReadFiles,java.util.ArrayList,com.alex.beans.ServerStatus,com.alex.utils.formatting.ParseToOutput" %>
 <!DOCTYPE html>
 <html>
 	<link rel="stylesheet" href="css/style.css">
