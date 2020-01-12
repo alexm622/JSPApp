@@ -21,6 +21,25 @@ public class ParseStats {
 		
 		list = ReadMaxAvg.getMaxAvg();
 		
+		HashMap<Long, ArrayList<Pair<String, Double>>> sorted = sort(list);
+		
+		format(sorted, out);
+		
+		
+		
+	}
+	
+	private static void format(HashMap<Long, ArrayList<Pair<String, Double>>> values, JspWriter out) throws Exception{
+		
+		//get the keys
+		Set<Long> keySet = values.keySet();
+		Long[] keys = new Long[keySet.size()];
+		keys = keySet.toArray(keys);
+		//iterate through the keys
+		for(Long key : keys) {
+			//print out the list of the tables
+			out.print(getString(values.get(keys), key));
+		}
 		
 	}
 	
@@ -30,7 +49,9 @@ public class ParseStats {
 		Set<String> keySet = unsorted.keySet();
 		
 		//get the keys
-		String[] keys = (String[]) keySet.toArray();
+		
+		String[] keys = new String[keySet.size()];
+		keys = keySet.toArray(keys);
 		
 		for(String s : keys) {
 			//get the arraylist
@@ -80,10 +101,6 @@ public class ParseStats {
 		return sorted;
 	}
 	
-	private static void format(long appid,  HashMap<Long, ArrayList<Pair<String, Double>>> values, JspWriter out) {
-		
-	}
-	
 	private static String getString(ArrayList<Pair<String, Double>> app, Long appid) {
 
 		//get game images path
@@ -96,6 +113,7 @@ public class ParseStats {
 		HashMap<DataType,ArrayList<Pair<String, Double>>> values = new HashMap<DataType, ArrayList<Pair<String, Double>>>();
 		
 		//iterate through the arraylist of values
+		
 		for(Pair<String, Double> pair : app){
 			if(pair.getKey().contains(DataType.MAX.getType())){	//if the pair is for a max value
 				
@@ -173,9 +191,22 @@ public class ParseStats {
 				"				<img src=\"" + logo + "\" style=\"height: 50px; width: 50px;\"></img>" + 
 				"			</th>" + 
 				"			<th style=\"width: 100%; \">" + 
-				"               Daily average: " + 
+				"               Daily average: " + data.get(DataType.AVG).get(DataTime.DAILY) + 
 				"			</th>" +
-				"			<th>" +
+				"               Daily Max: " + data.get(DataType.MAX).get(DataTime.DAILY) + 
+				"			</th>" +
+				"               Weekly average: " + data.get(DataType.AVG).get(DataTime.WEEKLY) + 
+				"			</th>" +
+				"               Weekly average: " + data.get(DataType.MAX).get(DataTime.WEEKLY) + 
+				"			</th>" +
+				"               Monthly average: " + data.get(DataType.AVG).get(DataTime.MONTHLY) + 
+				"			</th>" +
+				"               Monthly average: " + data.get(DataType.MAX).get(DataTime.MONTHLY) + 
+				"			</th>" +
+				"               All-Time average: " + data.get(DataType.AVG).get(DataTime.ALLTIME) + 
+				"			</th>" +
+				"               All-Time Max: " + data.get(DataType.MAX).get(DataTime.ALLTIME) + 
+				"			</th>" +
 				"	</table>" + 
 				"</div>" +
 				"<br>";

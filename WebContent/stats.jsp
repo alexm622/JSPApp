@@ -1,3 +1,4 @@
+<%@page import="com.alex.utils.formatting.ParseStats"%>
 <html>
 	<link rel="stylesheet" href="css/style.css">
 	
@@ -16,8 +17,9 @@
 		</div >
 		
 		<div class="status color2">
-		
-		
+		 <%
+		 	ParseStats.format(out);
+		 %>
 		
 		
 		</div>

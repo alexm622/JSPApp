@@ -22,7 +22,7 @@ public class ReadStatuses {
 		String extern = "73.17.34.121";
 		if(Snippits.getExternalIp().equals(extern)) {
 			//connect across local network
-			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "server");
+			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
 		}else {
 			//access using special remote account
 			con = DriverManager.getConnection("jdbc:mysql://73.17.34.121:3306/gameserver", "remote", Snippits.readPassword());

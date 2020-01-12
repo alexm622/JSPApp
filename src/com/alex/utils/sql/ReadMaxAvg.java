@@ -24,7 +24,7 @@ public class ReadMaxAvg {
 		String extern = "73.17.34.121";
 		if(Snippits.getExternalIp().equals(extern)) {
 			//connect across local network
-			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "server");
+			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
 		}else {
 			//access using special remote account
 			con = DriverManager.getConnection("jdbc:mysql://73.17.34.121:3306/gameserver", "remote", Snippits.readPassword());
@@ -102,7 +102,9 @@ public class ReadMaxAvg {
 			}
 			
 			//get the average
-			avg = getAverage((Double[])avgs.toArray());
+			Double[] avgsArray = new Double[avgs.size()];
+			avgsArray = avgs.toArray(avgsArray);
+			avg = getAverage(avgsArray);
 			
 			//save the average in a pair			
 			Pair<Long , Double> pair = new MutablePair<>(l, avg);
@@ -147,7 +149,9 @@ public class ReadMaxAvg {
 				avgs.add((double)rs.getFloat(1));
 			}
 			
-			avg = getAverage((Double[])avgs.toArray());
+			Double[] avgsArray = new Double[avgs.size()];
+			avgsArray = avgs.toArray(avgsArray);
+			avg = getAverage(avgsArray);
 			
 			Pair<Long , Double> pair = new MutablePair<>(l, avg);
 			
@@ -189,7 +193,9 @@ public class ReadMaxAvg {
 				avgs.add((double)rs.getFloat(1));
 			}
 			
-			avg = getAverage((Double[])avgs.toArray());
+			Double[] avgsArray = new Double[avgs.size()];
+			avgsArray = avgs.toArray(avgsArray);
+			avg = getAverage(avgsArray);
 			
 			Pair<Long , Double> pair = new MutablePair<>(l, avg);
 			
@@ -234,7 +240,9 @@ public class ReadMaxAvg {
 				avgs.add((double)rs.getFloat(1));
 			}
 			
-			avg = getAverage((Double[])avgs.toArray());
+			Double[] avgsArray = new Double[avgs.size()];
+			avgsArray = avgs.toArray(avgsArray);
+			avg = getAverage(avgsArray);
 			
 			Pair<Long , Double> pair = new MutablePair<>(l, avg);
 			
@@ -292,7 +300,10 @@ public class ReadMaxAvg {
 			}
 			
 			//store the max
-			max = getMax((Double[])maxes.toArray());
+			Double[] maxArray = new Double[maxes.size()];
+			maxArray = maxes.toArray(maxArray);
+			max = getAverage(maxArray);
+			
 			
 			//store into pair
 			Pair<Long , Double> pair = new MutablePair<>(l, max);
@@ -326,7 +337,7 @@ public class ReadMaxAvg {
 			ArrayList<Double> maxes = new ArrayList<Double>();
 			
 			
-			sql = "SELECT numplayers FROM weekly_maxes WHERE appid = ?";
+			sql = "SELECT max FROM weekly_maxes WHERE appid = ?";
 			
 			stmt = con.prepareStatement(sql);
 			stmt.setLong(1, l);
@@ -337,7 +348,9 @@ public class ReadMaxAvg {
 				maxes.add((double)rs.getFloat(1));
 			}
 			
-			max = getAverage((Double[])maxes.toArray());
+			Double[] maxArray = new Double[maxes.size()];
+			maxArray = maxes.toArray(maxArray);
+			max = getAverage(maxArray);
 			
 			Pair<Long , Double> pair = new MutablePair<>(l, max);
 			
@@ -368,7 +381,7 @@ public class ReadMaxAvg {
 			ArrayList<Double> maxes = new ArrayList<Double>();
 			
 			
-			sql = "SELECT numplayers FROM monthly_maxes WHERE appid = ?";
+			sql = "SELECT max FROM monthly_maxes WHERE appid = ?";
 			
 			stmt = con.prepareStatement(sql);
 			stmt.setLong(1, l);
@@ -379,7 +392,9 @@ public class ReadMaxAvg {
 				maxes.add((double)rs.getFloat(1));
 			}
 			
-			max = getAverage((Double[])maxes.toArray());
+			Double[] maxArray = new Double[maxes.size()];
+			maxArray = maxes.toArray(maxArray);
+			max = getAverage(maxArray);
 			
 			Pair<Long , Double> pair = new MutablePair<>(l, max);
 			
@@ -413,7 +428,7 @@ public class ReadMaxAvg {
 			ArrayList<Double> maxes = new ArrayList<Double>();
 			
 			
-			sql = "SELECT numplayers FROM yearly_maxes WHERE appid = ?";
+			sql = "SELECT max FROM yearly_maxes WHERE appid = ?";
 			
 			stmt = con.prepareStatement(sql);
 			stmt.setLong(1, l);
@@ -424,7 +439,9 @@ public class ReadMaxAvg {
 				maxes.add((double)rs.getFloat(1));
 			}
 			
-			max = getMax((Double[])maxes.toArray());
+			Double[] maxArray = new Double[maxes.size()];
+			maxArray = maxes.toArray(maxArray);
+			max = getAverage(maxArray);
 			
 			Pair<Long , Double> pair = new MutablePair<>(l, max);
 			
@@ -435,12 +452,12 @@ public class ReadMaxAvg {
 	}
 	
 	//get average value
-	private static double getAverage(Double[] maxes) throws Exception{
+	private static double getAverage(Double[] doubles) throws Exception{
 		
 		double out  = 0.0;
-		double count = maxes.length;
+		double count = doubles.length;
 		
-		for(double max : maxes) {
+		for(double max : doubles) {
 			out += max;
 		}
 		out /= count;
