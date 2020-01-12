@@ -38,7 +38,7 @@ public class ParseStats {
 		//iterate through the keys
 		for(Long key : keys) {
 			//print out the list of the tables
-			out.print(getString(values.get(keys), key));
+			out.print(getString(values.get(key), key));
 		}
 		
 	}
@@ -102,7 +102,7 @@ public class ParseStats {
 	}
 	
 	private static String getString(ArrayList<Pair<String, Double>> app, Long appid) {
-
+		Games.init();
 		//get game images path
 		String path = Games.games.get(appid);
 		
@@ -125,7 +125,7 @@ public class ParseStats {
 					arrayList.add(pair);
 					values.put(DataType.MAX, arrayList);
 				}else {
-					arrayList = values.get(DataType.MAX.getType());
+					arrayList = values.get(DataType.MAX);
 					arrayList.add(pair);
 					values.replace(DataType.MAX, arrayList);
 				}
@@ -142,7 +142,7 @@ public class ParseStats {
 				}else {
 					
 					//set the arraylist above to the stored arraylist
-					arrayList = values.get(DataType.AVG.getType());
+					arrayList = values.get(DataType.AVG);
 					
 					//add the current pair to the arraylist
 					arrayList.add(pair);
@@ -191,20 +191,27 @@ public class ParseStats {
 				"				<img src=\"" + logo + "\" style=\"height: 50px; width: 50px;\"></img>" + 
 				"			</th>" + 
 				"			<th style=\"width: 100%; \">" + 
-				"               Daily average: " + data.get(DataType.AVG).get(DataTime.DAILY) + 
+				"               Daily average: " + data.get(DataType.AVG).get(DataTime.DAILY).toString() + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               Daily Max: " + data.get(DataType.MAX).get(DataTime.DAILY) + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               Weekly average: " + data.get(DataType.AVG).get(DataTime.WEEKLY) + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               Weekly average: " + data.get(DataType.MAX).get(DataTime.WEEKLY) + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               Monthly average: " + data.get(DataType.AVG).get(DataTime.MONTHLY) + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               Monthly average: " + data.get(DataType.MAX).get(DataTime.MONTHLY) + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               All-Time average: " + data.get(DataType.AVG).get(DataTime.ALLTIME) + 
 				"			</th>" +
+				"			<th style=\"width: 100%; \">" +
 				"               All-Time Max: " + data.get(DataType.MAX).get(DataTime.ALLTIME) + 
 				"			</th>" +
 				"	</table>" + 
@@ -261,14 +268,12 @@ public class ParseStats {
 				out.put(DataTime.WEEKLY, pair.getRight());
 			}else if(pair.getLeft().contains(DataTime.ALLTIME.getTime())) { //is it an all time value
 				out.put(DataTime.ALLTIME, pair.getRight());
-			}else { //did something go wrong?
-				throw new Error("unknown time interval of " + pair.getLeft());
 			}
 			
 			
 		}
 		
-		return null;
+		return out;
 	}
 	
 	
