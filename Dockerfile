@@ -7,7 +7,7 @@ RUN rm -r /usr/local/tomcat/conf
 
 EXPOSE 8080
 
-RUN mv /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/Homepage
+#RUN mv /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/Homepage
 RUN mkdir /usr/local/tomcat/webapps/hosted
 ADD docker/Racks.csv /usr/local/tomcat/webapps/hosted/
 ADD docker/hosts.bin /usr/local/tomcat/webapps/hosted/
