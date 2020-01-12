@@ -190,28 +190,29 @@ public class ParseStats {
 				"			<th>" +
 				"				<img src=\"" + logo + "\" style=\"height: 50px; width: 50px;\"></img>" + 
 				"			</th>" + 
-				"			<th style=\"width: 100%; \">" + 
-				"               Daily average: " + data.get(DataType.AVG).get(DataTime.DAILY).toString() + 
+				"			<th class =\"color1\" style=\"width: 100%; \">" + 
+				"               Daily Average: " + data.get(DataType.AVG).get(DataTime.DAILY).toString() + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
 				"               Daily Max: " + data.get(DataType.MAX).get(DataTime.DAILY) + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
-				"               Weekly average: " + data.get(DataType.AVG).get(DataTime.WEEKLY) + 
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
+				"               Weekly Average: " + data.get(DataType.AVG).get(DataTime.WEEKLY) + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
-				"               Weekly average: " + data.get(DataType.MAX).get(DataTime.WEEKLY) + 
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
+				"               Weekly Max: " + data.get(DataType.MAX).get(DataTime.WEEKLY) + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
-				"               Monthly average: " + data.get(DataType.AVG).get(DataTime.MONTHLY) + 
+				"           <br> " +
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
+				"               Monthly Average: " + data.get(DataType.AVG).get(DataTime.MONTHLY) + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
-				"               Monthly average: " + data.get(DataType.MAX).get(DataTime.MONTHLY) + 
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
+				"               Monthly Max: " + data.get(DataType.MAX).get(DataTime.MONTHLY) + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
-				"               All-Time average: " + data.get(DataType.AVG).get(DataTime.ALLTIME) + 
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
+				"               All-Time Average: " + data.get(DataType.AVG).get(DataTime.ALLTIME) + 
 				"			</th>" +
-				"			<th style=\"width: 100%; \">" +
+				"			<th class =\"color1\" style=\"width: 100%; \">" +
 				"               All-Time Max: " + data.get(DataType.MAX).get(DataTime.ALLTIME) + 
 				"			</th>" +
 				"	</table>" + 
