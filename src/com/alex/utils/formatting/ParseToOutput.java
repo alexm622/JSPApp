@@ -1,4 +1,4 @@
-package com.alex.utils;
+package com.alex.utils.formatting;
 
 import java.io.File;
 import java.io.IOException;
