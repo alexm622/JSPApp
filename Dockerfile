@@ -30,6 +30,6 @@ RUN dos2unix /usr/local/tomcat/bin/launchscript.sh
 
 ADD JSPapp.war /usr/local/tomcat/webapps
 
-RUN mv /usr/local/tomcat/webapps/JSPApp.war /usr/local/tomcat/webapps/ROOT.war
+RUN mv /usr/local/tomcat/webapps/JSPapp.war /usr/local/tomcat/webapps/ROOT.war
 
 ENTRYPOINT ["/usr/local/tomcat/bin/launchscript.sh"]
