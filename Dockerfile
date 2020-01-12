@@ -2,7 +2,7 @@ FROM tomcat:9.0
 RUN apt-get update
 RUN apt-get -y install zip dos2unix
 RUN rm -r /usr/local/tomcat/conf
-RUN rm -r /usr/local/tomcat/webapps/ROOT/favicon.ico
+#RUN rm -r /usr/local/tomcat/webapps/ROOT/favicon.ico
 
 
 EXPOSE 8080
