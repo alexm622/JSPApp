@@ -23,7 +23,7 @@
 			<br>
 			
 			
-			<%
+									<%
 										//this will be replaced by a better method
 										
 										ParseToOutput po = new ParseToOutput();

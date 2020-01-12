@@ -14,15 +14,18 @@
 					Statistics
 				</div>
 			</div>
-		</div >
-		
-		<div class="status color2">
-		 <%
-		 	ParseStats.format(out);
-		 %>
+			<div class="status color2">
+		 	<%
+		 		ParseStats.format(out);
+			 %>
 		
 		
 		</div>
+		</div >
+		<div class="center">
+			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a> | <a href="index.jsp">Home</a>
+		</div>
+		
 	
 	</body>
 
