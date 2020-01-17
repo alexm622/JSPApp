@@ -6,3 +6,7 @@ target/*
 
 !target/*.war
 /target/
+
+*.jks
+
+*.xml
