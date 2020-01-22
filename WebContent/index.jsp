@@ -5,7 +5,7 @@
 <%@ page import="com.alex.utils.ReadFiles,java.util.ArrayList,com.alex.beans.ServerStatus,com.alex.utils.formatting.ParseToOutput" %>
 <!DOCTYPE html>
 <html>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./css/style.css" type="text/css">
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Server Status Homepage</title>
@@ -32,7 +32,7 @@
 			
 		</div>
 		<div class="center">
-			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a> | <a href="stats.jsp">Statistics</a>
+			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a> | <a href="stats.jsp">Statistics</a> | <a href="login.jsp"> Login Page</a>
 		</div>
 	</body>
 </html>

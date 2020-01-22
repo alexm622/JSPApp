@@ -1,0 +1,41 @@
+package com.alex.forums.posts;
+
+public class Post {
+	
+	public Post(long id, String creator, long creatorID,
+			String content, long likes, long dislikes,
+			boolean isDeleted, boolean isArchived, long parentThread,
+			boolean isLocked) {
+		this.id = id;
+		this.creator = creator;
+		this.creatorID = creatorID;
+		this.content = content;
+		this.likes = likes;
+		this.dislikes = dislikes;
+		this.isDeleted = isDeleted;
+		this.isArchived = isArchived;
+		this.isLocked = isLocked;
+		this.parentThread = parentThread;
+		
+	}
+	
+	public final long id;
+	public final String creator;
+	public final long creatorID;
+	public final String content;
+	public final long likes;
+	public final long dislikes;
+	public final boolean isDeleted;
+	public final boolean isArchived;
+	public final boolean isLocked;
+	public final long parentThread;
+	
+	//get like dislike ratio
+	public double getLDRatio() {
+		double percent = 0.0;
+		percent = (double) this.dislikes / (double) this.likes;
+		return percent;
+	}
+	
+
+}
