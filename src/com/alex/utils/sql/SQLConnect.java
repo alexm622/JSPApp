@@ -1,13 +1,15 @@
 package com.alex.utils.sql;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import com.alex.utils.Snippits;
 
 public class SQLConnect {
 	
-	public static Connection getCon(String db,String uname,String passwd) throws Exception{
+	public static Connection getCon(String db,String uname,String passwd) throws IOException ,SQLException, ClassNotFoundException{
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		Connection con;

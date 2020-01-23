@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Snippits {
 	
-	public static String getExternalIp() throws Exception {
+	public static String getExternalIp() throws IOException  {
         URL whatismyip = new URL("http://checkip.amazonaws.com");
         
         BufferedReader in = null;
@@ -25,7 +25,7 @@ public class Snippits {
         }
     }
 	
-	public static String readPassword() throws Exception{
+	public static String readPassword() throws IOException{
 		File file = new File("C:\\Data\\sqlpassword.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		

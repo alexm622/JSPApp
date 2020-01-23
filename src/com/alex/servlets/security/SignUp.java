@@ -12,12 +12,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-import com.alex.utils.security.Verification;
+import com.alex.forums.users.CreateUser;
 
 @WebServlet("/Login")
-public class Login extends HttpServlet {
+public class SignUp extends HttpServlet {
 	
-	private String password;
+	private String password1, password2;
 	private String username;
        
 	@Override
@@ -28,13 +28,19 @@ public class Login extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		this.password = Jsoup.clean(request.getParameter("password"), Whitelist.basic());
+		this.password1 = Jsoup.clean(request.getParameter("password1"), Whitelist.basic());
+		this.password2 = Jsoup.clean(request.getParameter("password2"), Whitelist.basic());	
 		
 		this.username = StringUtils.deleteWhitespace(Jsoup.clean(request.getParameter("username"), Whitelist.basic()));
 		
+		
+		
 		try {
-			boolean correct = Verification.isCorrect(username, password);
-			System.out.println(correct);
+			if(password1 != password2) {
+				throw new Error("password mismatch"); 
+			}
+			boolean created = CreateUser.create(username, password1);
+			System.out.println(created);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

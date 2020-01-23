@@ -8,7 +8,9 @@ import com.google.common.hash.Hashing;
 
 public class HashingUtils 
 {
-    
+    public static String bcryptHash(String password) {
+    	return BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
     
     public static boolean findBcryptMatch(String password, String hash2) {
 

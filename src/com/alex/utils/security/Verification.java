@@ -30,7 +30,7 @@ public class Verification {
 		
 		String sql = "SELECT usernamehash, passwordhash from Users where usernamehash=?";
 		
-		System.out.println(password);
+		
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		
