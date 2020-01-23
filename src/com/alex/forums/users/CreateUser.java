@@ -14,7 +14,7 @@ import com.alex.utils.sql.SQLConnect;
 
 public class CreateUser {
 	
-	public static boolean create(String username, String password) throws UserExists, ClassNotFoundException, IOException, SQLException {
+	public static boolean create(String username, String password, String displayname) throws UserExists, ClassNotFoundException, IOException, SQLException {
 		
 		//remove whitespace
 		username = StringUtils.deleteWhitespace(username);
@@ -30,11 +30,11 @@ public class CreateUser {
 		
 		
 		//create a user
-		return createUser(usernameHash, passwordHash, username);
+		return createUser(usernameHash, passwordHash, username, displayname);
 	}
 	
 	
-	private static boolean createUser(String usernameHash, String passwordHash, String username) throws ClassNotFoundException, IOException, SQLException {
+	private static boolean createUser(String usernameHash, String passwordHash, String username, String displayname) throws ClassNotFoundException, IOException, SQLException {
 		
 		Connection con = SQLConnect.getCon("forums", "signup", "signupuser");
 		
@@ -49,9 +49,11 @@ public class CreateUser {
 		//jump to last row
 		rs.last();
 		//get last used id
-		long lastID = rs.getLong(2);
+		long lastID = rs.getLong(1);
 		//get next id
 		long nextID = lastID + 1;
+		
+		System.out.println(nextID);
 		
 		
 		//line to insert data into table
@@ -62,7 +64,7 @@ public class CreateUser {
 		stmt = con.prepareStatement(sql);
 		
 		//set username
-		stmt.setString(1, username);
+		stmt.setString(1, displayname);
 		
 		//set id
 		stmt.setLong(2, nextID);
@@ -106,11 +108,13 @@ public class CreateUser {
 		//execute code
 		ResultSet rs = stmt.executeQuery();
 		
+		boolean taken = rs.next();
+		
 		//close the stream
 		con.close();
 		
 		//return true that user exists, and false if it does not exist
-		return (rs.next()) ? true : false;
+		return (taken) ? true : false;
 	}
 
 }

@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<p style="color: #ff0000" id="result">${result}</p>
+	<p style="color: #ff0000" id="issue">${issue}</p>
 	<form action="Login" method="POST">
 		<table>
 			<tr>

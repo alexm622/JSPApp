@@ -4,11 +4,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Sign Up Page</title>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
+	<p style="color: #ff0000" id="error">${errors}</p>
+	<p style="color: #00ff00" id="success">${success}</p>
+	
 	<form action="SignUp" method="POST">
 		<table>
+			<tr>
+				<td>Display Name</td>
+				<td><input name="display" type="text"> </td>
+			</tr>
 			<tr>
 				<td>Username</td>
 				<td><input name="username" type="text"> </td>
@@ -21,8 +29,10 @@
 				<td> Confirm Password </td>
 				<td><input name="password2" type="password"></td>
 			</tr>
+			
 		</table>
-		<button type="submit" value="Submit">Login</button>
+		<div class="g-recaptcha" data-sitekey="6LenHNIUAAAAAO05N6dCrHbWyEN4g6BZkNN1eSYv"></div>
+		<button type="submit" value="Submit">SignUp</button>
 	</form>
 </body>
 </html>

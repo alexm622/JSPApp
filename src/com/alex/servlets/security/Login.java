@@ -19,10 +19,13 @@ public class Login extends HttpServlet {
 	
 	private String password;
 	private String username;
+	private boolean correct = false;
        
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("result", correct);
 		
+		request.getRequestDispatcher("login.jsp").forward(request,response);
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class Login extends HttpServlet {
 		this.username = StringUtils.deleteWhitespace(Jsoup.clean(request.getParameter("username"), Whitelist.basic()));
 		
 		try {
-			boolean correct = Verification.isCorrect(username, password);
+			correct = Verification.isCorrect(username, password);
 			System.out.println(correct);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
