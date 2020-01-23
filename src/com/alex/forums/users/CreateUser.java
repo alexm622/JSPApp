@@ -77,7 +77,7 @@ public class CreateUser {
 		
 		stmt.execute();
 		
-		con.commit();
+		
 		
 		
 		

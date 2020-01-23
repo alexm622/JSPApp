@@ -25,9 +25,8 @@ public class Passwords {
 	        if( password.matches("(?=.*[A-Z]).*") )
 	            iPasswordScore += 2;    
 	        
-	        //if it contains one special character, add 2 to total score
-	        if( password.matches("(?=.*[~!@#$%^&*()_-]).*") )
-	            iPasswordScore += 2;
+	       
+	        
 	        
 	        return iPasswordScore;
 	        

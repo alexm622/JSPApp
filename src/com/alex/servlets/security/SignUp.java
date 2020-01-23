@@ -45,6 +45,11 @@ public class SignUp extends HttpServlet {
 		this.password1 = Jsoup.clean(request.getParameter("password1"), Whitelist.none());
 		this.password2 = Jsoup.clean(request.getParameter("password2"), Whitelist.none());	
 		
+		this.displayName = Jsoup.clean(request.getParameter("display"), Whitelist.none());
+		
+		System.out.println("password1: " + password1);
+		System.out.println("password2: " + password2);
+		
 		this.username = StringUtils.deleteWhitespace(Jsoup.clean(request.getParameter("username"), Whitelist.none()));
 		
 		
@@ -53,9 +58,9 @@ public class SignUp extends HttpServlet {
 		try {
 			if(password1.length() <= 7) {
 				error += "password is too small";
-			}else if(Passwords.calculatePasswordStrength(password1) < 9) {
-				error = "password must contain at least one special character, one number, one uppercase letter, and one lowercase letter";
-			}else if(password1 != password2) {
+			}else if(Passwords.calculatePasswordStrength(password1) < 7) {
+				error = "password must contain at one number, one uppercase letter, and one lowercase letter";
+			}else if(!password1.equals(password2)) {
 				error = "passwords do not match";
 				
 			}
