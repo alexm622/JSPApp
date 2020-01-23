@@ -30,11 +30,11 @@ public class CreateUser {
 		
 		
 		//create a user
-		return createUser(usernameHash, passwordHash, username, displayname);
+		return createUser(usernameHash, passwordHash, displayname);
 	}
 	
 	
-	private static boolean createUser(String usernameHash, String passwordHash, String username, String displayname) throws ClassNotFoundException, IOException, SQLException {
+	private static boolean createUser(String usernameHash, String passwordHash, String displayname) throws ClassNotFoundException, IOException, SQLException {
 		
 		Connection con = SQLConnect.getCon("forums", "signup", "signupuser");
 		
@@ -53,7 +53,7 @@ public class CreateUser {
 		//get next id
 		long nextID = lastID + 1;
 		
-		System.out.println(nextID);
+		System.out.println("the next id is" + nextID);
 		
 		
 		//line to insert data into table
