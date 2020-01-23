@@ -57,7 +57,7 @@ public class CreateUser {
 		//get next id
 		long nextID = lastID + 1;
 		
-		System.out.println("the next id is" + nextID);
+		System.out.println("the next id is " + nextID);
 		
 		
 		//line to insert data into table
