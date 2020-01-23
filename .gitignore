@@ -10,3 +10,4 @@ target/*
 *.jks
 ssl/
 
+recaptcha.txt

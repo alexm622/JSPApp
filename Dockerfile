@@ -31,7 +31,7 @@ RUN dos2unix /usr/local/tomcat/bin/launchscript.sh
 
 
 
-ADD JSPapp.war /usr/local/tomcat/webapps
+ADD target/JSPapp.war /usr/local/tomcat/webapps
 
 RUN mv /usr/local/tomcat/webapps/JSPapp.war /usr/local/tomcat/webapps/ROOT.war
 
