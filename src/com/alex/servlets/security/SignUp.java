@@ -42,23 +42,33 @@ public class SignUp extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//get the passwords
 		this.password1 = Jsoup.clean(request.getParameter("password1"), Whitelist.none());
 		this.password2 = Jsoup.clean(request.getParameter("password2"), Whitelist.none());	
 		
+		//get the display name
 		this.displayName = Jsoup.clean(request.getParameter("display"), Whitelist.none());
 		
+		//print the passwords
 		System.out.println("password1: " + password1);
 		System.out.println("password2: " + password2);
 		
-		this.username = StringUtils.deleteWhitespace(Jsoup.clean(request.getParameter("username"), Whitelist.none()));
+		//get the login username
+		this.username = Jsoup.clean(request.getParameter("username"), Whitelist.none());
+		
+		//test for whitespaces
+		if(username.contains(" ")) {
+			error = "username cannot contain whitespaces";
+		}
 		
 		
 		
 		
 		try {
+			//check password length
 			if(password1.length() <= 7) {
 				error += "password is too small";
-			}else if(Passwords.calculatePasswordStrength(password1) < 7) {
+			}else if(Passwords.calculatePasswordStrength(password1) < 7) { //check complexity
 				error = "password must contain at one number, one uppercase letter, and one lowercase letter";
 			}else if(!password1.equals(password2)) {
 				error = "passwords do not match";

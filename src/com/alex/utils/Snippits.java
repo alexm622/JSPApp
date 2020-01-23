@@ -26,7 +26,27 @@ public class Snippits {
     }
 	
 	public static String readPassword() throws IOException{
-		File file = new File("C:\\Data\\sqlpassword.txt");
+		System.out.println();
+		String os =System.getProperty("os.name").toLowerCase();
+		if(os.indexOf("win") >= 0) {
+			File file = new File("C:\\Data\\sqlpassword.txt");
+		}
+		
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		
+		String out = br.readLine();
+		
+		return out;
+	}
+	public static String readRecaptcha() throws IOException{
+		String os =System.getProperty("os.name").toLowerCase();
+		File file;
+		if(os.indexOf("win") >= 0) {
+			file = new File("C:\\Data\\recaptcha.txt");
+		}else {
+			file = new File("\\Data\\recaptcha.txt");
+		}
+		
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		
 		String out = br.readLine();
