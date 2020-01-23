@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+//this is a test class
+
 @WebServlet("/editor_test")
 public class PostTest extends HttpServlet {
 	

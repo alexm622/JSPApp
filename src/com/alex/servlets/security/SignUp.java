@@ -72,35 +72,44 @@ public class SignUp extends HttpServlet {
 		try {
 			//check password length
 			if(password1.length() <= 7) {
-				error += "password is too small";
+				error = "password is too small";
 			}else if(Passwords.calculatePasswordStrength(password1) < 7) { //check complexity
 				error = "password must contain at one number, one uppercase letter, and one lowercase letter";
-			}else if(!password1.equals(password2)) {
+			}else if(!password1.equals(password2)) {// check to see if they match
 				error = "passwords do not match";
 				
 			}
+			
+			//recaptcha stuff
 			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-			System.out.println(gRecaptchaResponse);
+//			System.out.println(gRecaptchaResponse);
+			//verify to check if recaptcha was good
 			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+			
+			//set the user create var to false
 			boolean created = false;
-			if(verify && error == "") {
+			if(verify && error == "") { //if recaptcha is good and error is nothing
 				System.out.println("creating user");
 				created = CreateUser.create(username, password1, displayName);
 			}else {
-				if(!verify) {
+				if(!verify) { //if recaptcha is failed
 					error = "recaptcha failed";
 				}
 			}
-			if(created) {
+			if(created) { //if the account was created
 				error = null;
+				//set the result
 				result = "account created properly";
 			}
-			System.out.println(created);
+			//print if the account was created
+			System.out.println("account " + username + "was created=" + created);
 		} catch (UserExists e) {
-			// TODO Auto-generated catch block
-			System.out.println("caught error");
+			//if that username is already in use
+			System.out.println("username " + username + " already exists");
 			System.out.println(e.getMessage());
+			//set the error to the error message
 			error = e.getMessage();
+		//errors thrown by called functions
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

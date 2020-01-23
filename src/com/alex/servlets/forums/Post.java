@@ -12,7 +12,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 
-
+//TODO work on the servlet for posting
 @WebServlet("/post")
 public class Post extends HttpServlet {
 	

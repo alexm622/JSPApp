@@ -42,14 +42,14 @@ public class Login extends HttpServlet {
 		
 		//try to verify
 		try {
-			//
+			//check the username and password against the database
 			correct = Verification.isCorrect(username, password);
 			System.out.println(correct);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		//send a redirect
 		response.sendRedirect(request.getRequestURI());
 	}
 }

@@ -19,10 +19,13 @@ public class ParseStats {
 	
 	public static void format(JspWriter out) throws Exception{
 		
+		//get the max and average
 		list = ReadMaxAvg.getMaxAvg();
 		
+		//sort the list
 		HashMap<Long, ArrayList<Pair<String, Double>>> sorted = sort(list);
 		
+		//format the sorted list
 		format(sorted, out);
 		
 		
@@ -221,7 +224,7 @@ public class ParseStats {
 		return print;
 		
 	}
-	
+	//enum for the list of types
 	enum DataType{
 		
 		MAX("max"), AVG("avg");
@@ -239,6 +242,7 @@ public class ParseStats {
 		
 	}
 	
+	//enum for the list of intervals of time
 	enum DataTime{
 		DAILY("daily"), WEEKLY("weekly"), MONTHLY("monthly"), ALLTIME("alltime");
 		

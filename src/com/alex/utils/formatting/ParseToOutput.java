@@ -14,17 +14,30 @@ import com.alex.constants.Icons;
 
 public class ParseToOutput {
 	
+	//list of statuses
 	private ArrayList<ServerStatus> status;
+	
+	//hashmap of the paths
 	Map<String, String> paths;
+	
+	//output jsp writer
 	private JspWriter out;
 	
+	//set the logo and banner vars
 	private String logo, banner;
 	
+	//parse and set the iconts
 	public void parse(ArrayList<ServerStatus> status, JspWriter out){
+		//init the list of games and their appids
 		Games.init();
+		
+		//init the list of icons and their games
 		Icons.init();
+		
+		//save the jspwriter variable
 		this.out = out;
 		
+		//iterate through teh serverstatus in the list
 		for(ServerStatus s : status) {
 			setBanner(s);
 		}	
@@ -32,14 +45,20 @@ public class ParseToOutput {
 	
 	private void setBanner(ServerStatus s) {
 		
+		//get the paths
 		String path = Games.games.get(s.getAppID());
 		
+		//set the banner path
 		banner = path + "banner.png";
 		
+		//set the logo path
 		logo = path + "logo.png";
 		
+		//vac status icon
 		String vac;
 		
+		//set the vac status icon to the green checkmark if it is secure
+		//if not then set it to the red X
 		if(s.isSecure()) {
 			vac = Icons.icons.get("green-check");
 		}else {
@@ -47,7 +66,7 @@ public class ParseToOutput {
 		}
 		
 		
-		
+		//the string to add to the jsp file
 		String print;
 		
 		print = "<div class=\"status-entry color1\">" + 
@@ -58,7 +77,7 @@ public class ParseToOutput {
 				"				<img src=\"" + logo + "\" style=\"height: 50px; width: 50px;\"></img>" + 
 				"			</th>" + 
 				"			<th style=\"width: 100%; \">" + 
-				s.toString() + 
+							s.toString() + 
 				"			</th>" +
 				"			<th>" +
 				"Vac Status: <img src=\"" + vac + "\" style=\"height: 50px; width: 50px;\"></img>" + 
@@ -67,6 +86,7 @@ public class ParseToOutput {
 				"</div>" +
 				"<br>";
 		try {
+			//attempt to print to the page
 			out.println(print);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
