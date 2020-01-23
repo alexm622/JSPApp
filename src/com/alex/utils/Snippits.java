@@ -47,7 +47,7 @@ public class Snippits {
 		if(os.indexOf("win") >= 0) {
 			file = new File("C:\\Data\\recaptcha.txt");
 		}else {
-			file = new File("\\Data\\recaptcha.txt");
+			file = new File("/Data/recaptcha.txt");
 		}
 		
 		BufferedReader br = new BufferedReader(new FileReader(file));
