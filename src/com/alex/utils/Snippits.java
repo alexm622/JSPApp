@@ -28,8 +28,11 @@ public class Snippits {
 	public static String readPassword() throws IOException{
 		System.out.println();
 		String os =System.getProperty("os.name").toLowerCase();
+		File file;
 		if(os.indexOf("win") >= 0) {
-			File file = new File("C:\\Data\\sqlpassword.txt");
+			file = new File("C:\\Data\\sqlpassword.txt");
+		}else {
+			file = new File("\\Data\\sqlpassword.txt");
 		}
 		
 		BufferedReader br = new BufferedReader(new FileReader(file));
