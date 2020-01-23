@@ -17,6 +17,7 @@ public class CreateUser {
 	public static boolean create(String username, String password, String displayname) throws UserExists, ClassNotFoundException, IOException, SQLException {
 		
 		//remove whitespace
+		System.out.println("removing whitespace");
 		username = StringUtils.deleteWhitespace(username);
 		
 		//return false if username is taken
@@ -27,10 +28,13 @@ public class CreateUser {
 		String passwordHash = HashingUtils.bcryptHash(password);
 		String usernameHash = HashingUtils.shaHash(username);
 		
-		
+		System.out.println("printing hashes");
+		System.out.println("Username: " + usernameHash);
+		System.out.println("Password: " + passwordHash);
 		
 		//create a user
-		return createUser(usernameHash, passwordHash, displayname);
+		boolean created = createUser(usernameHash, passwordHash, displayname);
+		return created;
 	}
 	
 	

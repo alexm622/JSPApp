@@ -16,6 +16,7 @@ import org.jsoup.safety.Whitelist;
 import com.alex.forums.users.CreateUser;
 import com.alex.utils.exceptions.UserExists;
 import com.alex.utils.security.Passwords;
+import com.alex.utils.security.VerifyRecaptcha;
 
 @WebServlet("/Signup")
 public class SignUp extends HttpServlet {

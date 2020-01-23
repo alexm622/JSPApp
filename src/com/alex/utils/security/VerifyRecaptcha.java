@@ -1,4 +1,4 @@
-package com.alex.servlets.security;
+package com.alex.utils.security;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -58,7 +58,7 @@ public class VerifyRecaptcha {
 		in.close();
 
 		// print result
-		//System.out.println(response.toString());
+		System.out.println(response.toString());
 		
 		//parse JSON response and return 'success' value
 		JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
