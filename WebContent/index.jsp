@@ -21,18 +21,16 @@
 				Servers
 			</div>
 			<br>
-			
-			
-									<%
-										//this will be replaced by a better method
-										
-										ParseToOutput po = new ParseToOutput();
-										po.parse(ReadStatuses.read(), out);
-									%>
-			
+			<%
+				//this will be replaced by a better method
+				
+				ParseToOutput po = new ParseToOutput();
+				po.parse(ReadStatuses.read(), out);
+			%>
 		</div>
 		<div class="center">
 			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a> | <a href="stats.jsp">Statistics</a> | <a href="login.jsp"> Login Page</a>
+			| <a href="signup.jsp">Sign Up</a>
 		</div>
 	</body>
 </html>
