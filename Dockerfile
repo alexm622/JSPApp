@@ -14,7 +14,7 @@ ADD docker/Racks.csv /usr/local/tomcat/webapps/hosted/
 ADD docker/hosts.bin /usr/local/tomcat/webapps/hosted/
 ADD docker/ssl/cert.pem /usr/local/ssl/cert.pem
 ADD docker/ssl/privkey.pem /usr/local/ssl/privkey.pem
-
+ADD docker/recaptcha.txt /Data/recaptcha.txt
 
 
 
