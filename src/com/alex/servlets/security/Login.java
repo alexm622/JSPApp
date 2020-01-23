@@ -23,19 +23,26 @@ public class Login extends HttpServlet {
        
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//set the result
 		request.setAttribute("result", correct);
 		
+		//forward to login page
 		request.getRequestDispatcher("login.jsp").forward(request,response);
 	}
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//grab the password
 		this.password = Jsoup.clean(request.getParameter("password"), Whitelist.basic());
 		
+		//grab the username
 		this.username = StringUtils.deleteWhitespace(Jsoup.clean(request.getParameter("username"), Whitelist.basic()));
 		
+		//try to verify
 		try {
+			//
 			correct = Verification.isCorrect(username, password);
 			System.out.println(correct);
 		} catch (Exception e) {

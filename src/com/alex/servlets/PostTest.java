@@ -17,15 +17,20 @@ public class PostTest extends HttpServlet {
        
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// set the content attribute
 		request.setAttribute("content", content);
+		
+		//redirect
 		request.getRequestDispatcher("editor_test.jsp").forward(request,response);
 	}
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//get the content in the textarea
 		this.content = Jsoup.clean(request.getParameter("content"), Whitelist.basic());
 		
+		//execute a GET function
 		response.sendRedirect(request.getRequestURI());
 	}
 }

@@ -29,14 +29,18 @@ public class SignUp extends HttpServlet {
        
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(error == null) {
+		if(error == null) { //test for no errors
+			//output the success text
 			request.setAttribute("success", result);
-		}else if(result == null && error == null) {
+		}else if(result == null && error == null) { //if result and error are both null
+			//set the error message
 			request.setAttribute("errors", "both result and error are null");
-		}else {
+		}else { 
+			//output the error
 			request.setAttribute("errors", error);
 		}
 		
+		//redirect to signup page
 		request.getRequestDispatcher("signup.jsp").forward(request,response);
 	}
 

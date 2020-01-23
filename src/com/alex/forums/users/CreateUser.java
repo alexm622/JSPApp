@@ -79,6 +79,7 @@ public class CreateUser {
 		//set password hash
 		stmt.setString(4, passwordHash);
 		
+		//execute query
 		stmt.execute();
 		
 		
