@@ -100,9 +100,10 @@ public class SignUp extends HttpServlet {
 				error = null;
 				//set the result
 				result = "account created properly";
+				System.out.println("account " + username + " was created? " + created);
 			}
 			//print if the account was created
-			System.out.println("account " + username + "was created=" + created);
+			
 		} catch (UserExists e) {
 			//if that username is already in use
 			System.out.println("username " + username + " already exists");
