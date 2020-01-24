@@ -4,6 +4,22 @@
 	padding: 25px;
 }
 
+
+
+input{
+	outline: none;
+	resize: none;
+}
+
+div.g-recaptcha {
+	min-height: 45px;
+	min-width: 90px;
+	border: 1px black;
+	color: #fff;
+	text-color: #000;
+}
+
+
 .title{
 	font-size: 50px;
 	font-family: Serif;
@@ -32,6 +48,15 @@
 	
 	border-radius: 5px;
 	padding: 25px;
+	
+}
+
+.button{
+	outline: none;
+	border-radius: 25px;
+	padding: 25px;
+	font-size: 25px;
+	font-family: Serif;
 	
 }
 
@@ -65,4 +90,20 @@
 .color4{
 	color: #ca3e47;
 	background-color: #414141;
+}
+
+.color5{
+	background-color: #202060;
+	color: #602080;
+}
+
+.color6{
+	background-color: #202040;
+	color: #b030b0;
+}
+
+input.dark1{
+	background-color: #3e2d80;
+	color: #b030b0;
+	font-weight: bold;
 }

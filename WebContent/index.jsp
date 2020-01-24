@@ -10,20 +10,17 @@
 		<meta charset="ISO-8859-1">
 		<title>Server Status Homepage</title>
 		<style type="text/css">
-		a:link{
-			color: #ca3e47;
-		}
-		
-		a:visited{
-			color:  #ff4d00;
-		}
-		
-		a:hover {
-		  color: hotpink;
-		}
+			a:link{
+				color: #ca3e47;
+			}
 			
-		
-		
+			a:visited{
+				color:  #ff4d00;
+			}
+			
+			a:hover {
+			  color: hotpink;
+			}
 		</style>
 	</head>
 	<body class="container color4">
