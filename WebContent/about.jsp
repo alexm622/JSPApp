@@ -24,15 +24,15 @@
 				<h1 style="font-size: 20pt" class="Left">What was used to make this site?</h1>
 				<h2 style="font-size: 15pt">
 					to create the site's main webpages i used
-					<br>
-					<ul style="font-size: 10pt">
-						<li> JSP (Java Server Pages)
-						<li> Java
-						<li> HTML
-						<li> CSS
-						<li> JavaScript
-					</ul>
 				</h2>
+				<br>
+				<ul style="font-size: 10pt">
+					<li> JSP (Java Server Pages)
+					<li> Java
+					<li> HTML
+					<li> CSS
+					<li> JavaScript
+				</ul>
 			</div>
 			<br>
 			<div class="top color3">

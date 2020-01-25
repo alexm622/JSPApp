@@ -1,9 +1,7 @@
 package com.alex.utils.security;
 
 import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
 
-import com.alex.utils.Conversion;
 import com.google.common.hash.Hashing;
 
 public class HashingUtils 

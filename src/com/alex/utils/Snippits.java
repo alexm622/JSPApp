@@ -45,6 +45,9 @@ public class Snippits {
 		//read the password
 		String out = br.readLine();
 		
+		//close buffered reader
+		br.close();
+		
 		//return password
 		return out;
 	}
@@ -62,6 +65,9 @@ public class Snippits {
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		//get output
 		String out = br.readLine();
+		
+		//close buffered reader
+		br.close();
 		
 		//return recaptcha key
 		return out;

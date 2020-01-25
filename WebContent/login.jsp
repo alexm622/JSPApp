@@ -38,7 +38,7 @@
 							<input class="dark1" name="username" type="text">
 						</td>
 					</tr>
-					<br/>
+					
 					<tr>
 						<td> Password </td>
 						<td>
