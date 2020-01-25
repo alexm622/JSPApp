@@ -15,6 +15,10 @@ import org.jsoup.safety.Whitelist;
 @WebServlet("/editor_test")
 public class PostTest extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6162488347297089549L;
 	private String content = "There is no content yet.";
        
 	@Override

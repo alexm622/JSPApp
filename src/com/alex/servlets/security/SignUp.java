@@ -21,6 +21,10 @@ import com.alex.utils.security.VerifyRecaptcha;
 @WebServlet("/Signup")
 public class SignUp extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1103004660235406995L;
 	private String password1, password2;
 	private String username;
 	private String displayName;

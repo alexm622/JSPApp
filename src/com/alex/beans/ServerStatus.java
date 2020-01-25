@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class ServerStatus implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8361423837584201751L;
 	private String name, map, description, tags;
 	private char operatingSystem;
 	private int numOfPlayers,maxPlayers,numOfBots;
