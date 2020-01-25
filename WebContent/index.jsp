@@ -1,3 +1,4 @@
+<%@page import="com.alex.utils.web.SessionUtils"%>
 <%@page import="com.alex.utils.sql.ReadStatuses"%>
 <%@page import="com.alex.constants.Games"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -24,6 +25,18 @@
 		</style>
 	</head>
 	<body class="container color4">
+	<p style="font-size: 10px">
+	<%
+	SessionUtils su = new SessionUtils(request);
+	try{
+		String uname = su.getDisplayName();
+		out.print(uname);
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	%>
+	</p>
 		<div class="top-container">
 			<div class="top color3">
 				<div class="title center">Server Status</div>

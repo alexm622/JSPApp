@@ -13,7 +13,7 @@ import com.alex.constants.Icons;
 public class ParseToOutput {
 	
 	//list of statuses
-	private ArrayList<ServerStatus> status;
+
 	
 	//hashmap of the paths
 	Map<String, String> paths;
@@ -22,9 +22,9 @@ public class ParseToOutput {
 	private JspWriter out;
 	
 	//set the logo and banner vars
-	private String logo, banner;
+	private String logo;
 	
-	//parse and set the iconts
+	//parse and set the icons
 	public void parse(ArrayList<ServerStatus> status, JspWriter out){
 		//init the list of games and their appids
 		Games.init();
@@ -45,9 +45,6 @@ public class ParseToOutput {
 		
 		//get the paths
 		String path = Games.games.get(s.getAppID());
-		
-		//set the banner path
-		banner = path + "banner.png";
 		
 		//set the logo path
 		logo = path + "logo.png";

@@ -13,12 +13,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alex.utils.exceptions.InvalidUsername;
 import com.alex.utils.security.HashingUtils;
 import com.alex.utils.sql.SQLConnect;
 
 public class Cookies {
 
-	public static void addCookie(HttpServletResponse response, HttpServletRequest request, String username) throws ClassNotFoundException, IOException, SQLException {
+	public static void addCookie(HttpServletResponse response, HttpServletRequest request, String username) throws ClassNotFoundException, IOException, SQLException, InvalidUsername {
 		
 		
 		String unameHash = HashingUtils.shaHash(username);
@@ -26,6 +27,10 @@ public class Cookies {
 		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
 		
 		long id = getID(unameHash, con);
+		
+		if(id==-1) {
+			throw new InvalidUsername(username);
+		}
 		
 		deleteCookies(request);
 		invalidateTokens(request, unameHash, con);
@@ -42,14 +47,21 @@ public class Cookies {
 		con.close();
 	}
 	
-	private static long getID(String unameHash, Connection con) {
+	private static long getID(String unameHash, Connection con) throws SQLException {
 		
 		String sql = "SELECT id FROM Users WHERE usernameHash=?";
 		
+		PreparedStatement stmt = con.prepareStatement(sql);
 		
+		stmt.setString(1, unameHash);
 		
+		ResultSet rs = stmt.executeQuery();
 		
-		return 0;
+		if(rs.next()) {
+			return  rs.getLong(1);
+		}else {
+			return -1;	
+		}
 	}
 	
 	//returns true if a token was invalidated
@@ -61,14 +73,15 @@ public class Cookies {
 		Cookie[] cookies = request.getCookies();
 		
 		for(Cookie c : cookies) {
-			if(c.getDomain() == "alexcomeau.com") {
+			if(c.getDomain() == "alexcomeau.com" || c.getDomain() == "localhost"
+					|| c.getDomain() == "10.0.0.4") {
 				//only store my own cookies
 				mydomain.add(c);
 			}
 		}
 		boolean exists = false;
-		for(Cookie c : mydomain) {
-			if(c.getComment() == "token") {
+		for(Cookie c : cookies) {
+			if(c.getName().contains("Token")) {
 				String token = c.getValue();
 				//set the query
 				String query = "SELECT * FROM ActiveTokens WHERE TokenID=?";
@@ -82,10 +95,12 @@ public class Cookies {
 				//get the results
 				ResultSet rs = stmt.executeQuery();
 				
-				
-				boolean remove = rs.next();
-				
 				//there is a cookie field for the token
+				boolean remove = rs.next();
+				//debug
+				System.out.println("does this token already exist: " + remove);
+				
+				
 				exists = !exists;
 				
 				if(remove) {
@@ -116,7 +131,8 @@ public class Cookies {
 		
 		//iterate through the cookeis
 		for(Cookie c : cookies) {
-			if(c.getDomain() == "alexcomeau.com") {
+			if(c.getDomain() == "alexcomeau.com" || c.getDomain() == "localhost"
+					|| c.getDomain() == "10.0.0.4") {
 				//only store my own cookies
 				mydomain.add(c);
 			}
@@ -151,19 +167,16 @@ public class Cookies {
 		do {
 			//create the variables
 			SecureRandom random = new SecureRandom();
-			byte[] bytes = new byte[20];
+			
 			
 			//get the random characters
-			random.nextBytes(bytes);
+			Long rand = random.nextLong();
 			
-			//make the bytebuffer
-			ByteBuffer bb = ByteBuffer.wrap(bytes);
 			
-			//export to a string
-			String tokenString = bb.toString();
+			
 			
 			//create hash
-			tokenHash = HashingUtils.shaHash(tokenString);
+			tokenHash = HashingUtils.shaHash((rand.toString()));
 			
 			//set the query
 			String query = "SELECT * FROM ActiveTokens WHERE TokenID=?";
@@ -182,10 +195,11 @@ public class Cookies {
 				goodToken = !goodToken;
 			}
 			
-			System.out.println("generated token of " + tokenHash);
+			
 			
 		} while (goodToken);
 		
+		System.out.println("generated token of " + tokenHash);
 		
 		//return the generated token
 		return tokenHash;

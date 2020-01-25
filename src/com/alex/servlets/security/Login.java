@@ -18,6 +18,10 @@ import com.alex.utils.web.Cookies;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5688587608727398561L;
 	private String password;
 	private String username;
 	private boolean correct = false;
