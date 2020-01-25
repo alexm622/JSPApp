@@ -74,6 +74,7 @@ public class SignUp extends HttpServlet {
 			if(password1.length() <= 7) {
 				error = "password is too small";
 			}else if(Passwords.calculatePasswordStrength(password1) < 7) { //check complexity
+				System.out.println("password score = " + Passwords.calculatePasswordStrength(password1));
 				error = "password must contain at one number, one uppercase letter, and one lowercase letter";
 			}else if(!password1.equals(password2)) {// check to see if they match
 				error = "passwords do not match";
@@ -113,10 +114,20 @@ public class SignUp extends HttpServlet {
 		//errors thrown by called functions
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			if(error == null) {
+				error = "Classnotfound";
+			}else {
+				error += " and a classnotfound exception occored";
+			}
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			if(error == null) {
+				error = "sql exception occurred";
+			}else {
+				error += " and an sql exception occured";
+			}
 		}
 		
 		response.sendRedirect(request.getRequestURI());

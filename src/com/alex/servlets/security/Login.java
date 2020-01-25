@@ -13,6 +13,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import com.alex.utils.security.Verification;
+import com.alex.utils.web.Cookies;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -48,10 +49,21 @@ public class Login extends HttpServlet {
 			//check the username and password against the database
 			correct = Verification.isCorrect(username, password);
 			System.out.println(correct);
+			
+			if(correct) {
+				//TODO add cookies
+				Cookies.addCookie(response, request, username);
+			}
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
+		
 		//send a redirect
 		response.sendRedirect(request.getRequestURI());
 	}
