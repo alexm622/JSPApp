@@ -29,4 +29,8 @@ public class Thread {
 	public final boolean isDeleted;
 	public final boolean isArchived;
 	public final boolean isLocked;
+	
+	
+	
+	
 }

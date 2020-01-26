@@ -27,6 +27,7 @@ public class Threads extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//return the same exact page if nothing is happening
 		if(a == Actions.NONE) {
 			request.getRequestDispatcher("editor_test.jsp").forward(request,response);
 		}
@@ -39,8 +40,10 @@ public class Threads extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//get the action
 		String action = request.getParameter("hidden");
 		
+		//determine what action to take
 		if(action.contentEquals("next")) {
 			a = Actions.NEXT;
 		}else if (action.contentEquals("back")) {
@@ -49,16 +52,19 @@ public class Threads extends HttpServlet {
 			a = Actions.NONE;
 		}
 		
+		//get the interval
 		String interval = request.getParameter("interval");
 		String[] split = interval.split("-");
 		
+		//get the interval max and min
 		bottom = Integer.parseInt(split[0]);
 		top = Integer.parseInt(split[1]);
 		
-		
-		
+		//send redirect
 		response.sendRedirect("/threads.jsp");
 	}
+	
+	
 	
 }
 
