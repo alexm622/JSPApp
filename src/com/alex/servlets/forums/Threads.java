@@ -14,6 +14,12 @@ import org.jsoup.safety.Whitelist;
 @WebServlet("/Threads")
 public class Threads extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2427882201717517381L;
+	
+	
 	private String content = "There is no content yet.";
 	private int top, bottom;
 	private Actions a;
@@ -42,6 +48,14 @@ public class Threads extends HttpServlet {
 		}else {
 			a = Actions.NONE;
 		}
+		
+		String interval = request.getParameter("interval");
+		String[] split = interval.split("-");
+		
+		bottom = Integer.parseInt(split[0]);
+		top = Integer.parseInt(split[1]);
+		
+		
 		
 		response.sendRedirect("/threads.jsp");
 	}
