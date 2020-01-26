@@ -21,12 +21,10 @@
 	  <servlet-name>PostTest</servlet-name>
 	  <url-pattern>/forums</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login.jsp</url-pattern>
   </servlet-mapping>
-  
   <servlet>
   	<servlet-name>SignUp</servlet-name>
   	<servlet-class>com.alex.servlets.security.SignUp</servlet-class>	
@@ -34,5 +32,13 @@
   <servlet-mapping>
   	<servlet-name>SignUp</servlet-name>
   	<url-pattern>/SignUp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>Threads</servlet-name>
+  	<servlet-class>com.alex.servlets.forums.Threads</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Threads</servlet-name>
+  	<url-pattern>/Threads</url-pattern>
   </servlet-mapping>
 </web-app>
