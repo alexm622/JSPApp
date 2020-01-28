@@ -39,6 +39,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>Threads</servlet-name>
-  	<url-pattern>/Threads</url-pattern>
+  	<url-pattern>/Threads.jsp</url-pattern>
   </servlet-mapping>
 </web-app>
