@@ -1,3 +1,4 @@
+<%@page import="com.alex.forums.threads.ThreadingUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,12 +22,12 @@
 		</style>
 	</head>
 	<body>
-	<div>
 	${Threads}
 	</div>
 	<div>
-	<input type="hidden" name="interval" value="0-20">
+	
 		<form name="nxt" method="POST" action="Threads">	
+		<input name="interval" type="hidden" value="0-20" />
 		<input name="hidden" type="hidden" />
 			<table>
 				<tr>

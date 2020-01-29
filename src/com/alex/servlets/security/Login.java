@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 			
 			if(correct) {
 				//TODO add cookies
-				Cookies.addCookie(response, request, username);
+				Cookies.addTokenCookie(response, request, username);
 			}
 			
 			

@@ -50,7 +50,7 @@ public class ThreadingUtils {
 		return threads;
 	}
 	
-	public String parseToDivs(int offset) throws ClassNotFoundException, IOException, SQLException, IdNotExists {
+	public static String parseToDivs(int offset) throws ClassNotFoundException, IOException, SQLException, IdNotExists {
 		
 		//html elements
 		final String div = " <div class=\"status-entry color6\"> <table> ? </table> </div>";

@@ -18,8 +18,8 @@ import com.alex.utils.security.HashingUtils;
 import com.alex.utils.sql.SQLConnect;
 
 public class Cookies {
-
-	public static void addCookie(HttpServletResponse response, HttpServletRequest request, String username) throws ClassNotFoundException, IOException, SQLException, InvalidUsername {
+	
+	public static void addTokenCookie(HttpServletResponse response, HttpServletRequest request, String username) throws ClassNotFoundException, IOException, SQLException, InvalidUsername {
 		
 		
 		String unameHash = HashingUtils.shaHash(username);
@@ -47,6 +47,9 @@ public class Cookies {
 		con.close();
 	}
 	
+	
+	
+	
 	private static long getID(String unameHash, Connection con) throws SQLException {
 		
 		String sql = "SELECT id FROM Users WHERE usernameHash=?";
@@ -63,6 +66,34 @@ public class Cookies {
 			return -1;	
 		}
 	}
+	
+	public static void addCookie(HttpServletResponse response,
+			String name, String value, String comment, int expire) {
+		Cookie c = new Cookie(name, value);
+		
+		c.setComment(comment);
+		
+		c.setMaxAge(expire);
+		
+		response.addCookie(c);
+		
+	}
+	
+	public static ArrayList<Cookie> getCookies(HttpServletRequest request, String name) {
+		ArrayList<Cookie> cook = new ArrayList<Cookie>();
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for(Cookie c : cookies) {
+			if(c.getName().contains(name)) {
+				cook.add(c);
+			}
+		}
+		
+		
+		return cook;
+	}
+	
 	
 	//returns true if a token was invalidated
 	private static boolean invalidateTokens(HttpServletRequest request, String unameHash, Connection con) throws SQLException {
