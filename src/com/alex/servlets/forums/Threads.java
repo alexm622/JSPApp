@@ -36,30 +36,48 @@ public class Threads extends HttpServlet {
 		//return the same exact page if nothing is happening
 		if(a == Actions.NONE) {
 			//debug
+			
+			
 			System.out.println("no action taken");
 			
-			Cookies.addCookie(response, "top", (new Integer(top)).toString(), "top", 100);
-			Cookies.addCookie(response, "bottom", (new Integer(bottom)).toString(), "bottom", 100);
+			System.out.println("top: " + top);
+			System.out.println("botton: " + bottom );
+			
+			
 			
 			try {
 				content = ThreadingUtils.parseToDivs(bottom);
+				System.out.println("content: " + content);
 				
 			} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 				// TODO Auto-generated catch block
 				content = "fetch failed";
 			}
 			
+			
+			
+			response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
+			response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
+			
+			request.setAttribute("Threads", content);
+			
 			//redirect
 			request.getRequestDispatcher("./threads.jsp").forward(request,response);
+			return;
 		}
+		
+		response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
+		response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
 		
 		
 		//debug
 		System.out.println("action taken, and that action was : " + a.name());
+		System.out.println("top: " + top);
+		System.out.println("botton: " + bottom );
 		try {
-			content = ThreadingUtils.parseToDivs(top);
-			bottom = top;
-			top += 20;
+			
+			content = ThreadingUtils.parseToDivs(bottom);
+			System.out.println("content: " + content);
 			
 		} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 			// TODO Auto-generated catch block
@@ -69,7 +87,7 @@ public class Threads extends HttpServlet {
 		
 		
 		
-		request.setAttribute("content", content);
+		request.setAttribute("Threads", content);
 		request.getRequestDispatcher("./threads.jsp").forward(request,response);
 	}
 
@@ -82,10 +100,20 @@ public class Threads extends HttpServlet {
 		//determine what action to take
 		if(action.contentEquals("next")) {
 			a = Actions.NEXT;
+			bottom = top;
+			top += 20;
 		}else if (action.contentEquals("back")) {
 			a = Actions.BACK;
+			if(bottom < 20 || top < 40) {
+				bottom = 0;
+				top = 20;
+			}else {
+				top = bottom;
+				bottom -= 20;
+			}
 		}else {
 			a = Actions.NONE;
+			
 		}
 		
 		//get the interval
@@ -94,20 +122,15 @@ public class Threads extends HttpServlet {
 		
 		
 		
+		
+		
+		
 		while(parameters.hasMoreElements()) {
 			System.out.println(parameters.nextElement());
 		}
 		
-		String interval = request.getParameter("interval");
-		System.out.println(interval);
-		String[] split = interval.split("-");
-		
-		//get the interval max and min
-		bottom = Integer.parseInt(split[0]);
-		top = Integer.parseInt(split[1]);
-		
 		//send redirect
-		response.sendRedirect("threads.jsp");
+		response.sendRedirect("Threads");
 	}
 	
 	

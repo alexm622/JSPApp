@@ -56,6 +56,7 @@ public class ThreadingUtils {
 		final String div = " <div class=\"status-entry color6\"> <table> ? </table> </div>";
 		final String row = "<tr> ? </tr>";
 		final String column = "<th> ? <th>";
+		String out = "";
 		
 		//stringbuilder for final output
 		StringBuilder sb = new StringBuilder();
@@ -67,7 +68,7 @@ public class ThreadingUtils {
 		ArrayList<Thread> threads = getThreads(offset, con);
 		
 		for(Thread t : threads) {
-			String out = div.replace("?", row);
+			out = div.replace("?", row);
 			
 			//make an arraylist containing all of the columns
 			ArrayList<String> columns = new ArrayList<String>();
@@ -91,7 +92,7 @@ public class ThreadingUtils {
 		}
 		
 		//return html elements
-		return sb.toString();
+		return out.replace("?", sb.toString());
 	}
 	
 }

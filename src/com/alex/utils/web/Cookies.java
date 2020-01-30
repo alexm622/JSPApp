@@ -67,15 +67,14 @@ public class Cookies {
 		}
 	}
 	
-	public static void addCookie(HttpServletResponse response,
-			String name, String value, String comment, int expire) {
+	public static Cookie makeCookie(String name, String value, String comment, int expire) {
 		Cookie c = new Cookie(name, value);
 		
 		c.setComment(comment);
 		
 		c.setMaxAge(expire);
 		
-		response.addCookie(c);
+		return c;
 		
 	}
 	
@@ -252,6 +251,24 @@ public class Cookies {
 		
 		//execute statement
 		stmt.execute();
+	}
+	
+	public Cookie refineSearch(ArrayList<Cookie> cookies, String term) {
+		Cookie out = new Cookie("none", "this should exist");
+		int len = 0;
+		for(Cookie c : cookies) {
+			if(len == 0 && cookies.indexOf(c) == 0) {
+				len = c.getName().length();
+				out = c;
+			}
+			if(c.getName().length() < len) {
+				out = c;
+				len = c.getName().length();
+				
+			}
+		}
+		
+		return out;
 	}
 	
 }

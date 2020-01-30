@@ -60,6 +60,15 @@ div.g-recaptcha {
 	
 }
 
+.button_threads{
+	outline: none;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 10px;
+	font-family: Serif;
+	
+}
+
 .center{
 	text-align: center;
 }

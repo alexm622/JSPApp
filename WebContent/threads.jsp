@@ -21,21 +21,19 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body class="color5">
 	${Threads}
-	</div>
 	<div>
 	
 		<form name="nxt" method="POST" action="Threads">	
-		<input name="interval" type="hidden" value="0-20" />
 		<input name="hidden" type="hidden" />
 			<table>
 				<tr>
 				<th>
-				<button name="back" value="back" onclick="{document.nxt.hidden.value='back';document.nxt.submit();}">Back</button>
+				<input type="button" name="back" value="back" class="button_threads dark1" onclick="{document.nxt.hidden.value='back';document.nxt.submit();}"/>
 				</th>
 				<th>
-				<button name="next" value="next" onclick="{document.nxt.hidden.value='next';document.nxt.submit();}">Next</button>
+				<input type="button"  name="next" value="next" class="button_threads dark1" onclick="{document.nxt.hidden.value='next';document.nxt.submit();}"/>
 				</th>
 				</tr>
 			</table>
