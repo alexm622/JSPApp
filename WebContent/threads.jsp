@@ -35,6 +35,9 @@
 				<th>
 				<input type="button"  name="next" value="next" class="button_threads dark1" onclick="{document.nxt.hidden.value='next';document.nxt.submit();}"/>
 				</th>
+				<th>
+				Items ${range}
+				</th>
 				</tr>
 			</table>
 		</form>

@@ -33,39 +33,44 @@ public class Threads extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//return the same exact page if nothing is happening
+		//set the range in threads
+		request.setAttribute("range", (new String(bottom + "-" + top)));
+		
+		//regenerates a page if nothing has happened
 		if(a == Actions.NONE) {
 			//debug
-			
-			
 			System.out.println("no action taken");
 			
 			System.out.println("top: " + top);
 			System.out.println("botton: " + bottom );
 			
-			
-			
 			try {
+				//get the output
 				content = ThreadingUtils.parseToDivs(bottom);
-				System.out.println("content: " + content);
 				
+				//debug
+				System.out.println("content: " + content);
 			} catch (ClassNotFoundException | SQLException | IdNotExists e) {
-				// TODO Auto-generated catch block
+				//if for some reason there was nothing
 				content = "fetch failed";
 			}
 			
 			
-			
+			//add cookies
 			response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
 			response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
 			
+			//output the content
 			request.setAttribute("Threads", content);
 			
-			//redirect
+			//return page
 			request.getRequestDispatcher("./threads.jsp").forward(request,response);
+			
+			//break before everything else happens
 			return;
 		}
 		
+		//add cookies
 		response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
 		response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
 		
@@ -75,19 +80,22 @@ public class Threads extends HttpServlet {
 		System.out.println("top: " + top);
 		System.out.println("botton: " + bottom );
 		try {
-			
+			//generate the content of the page
 			content = ThreadingUtils.parseToDivs(bottom);
+			
+			//debug
 			System.out.println("content: " + content);
 			
 		} catch (ClassNotFoundException | SQLException | IdNotExists e) {
-			// TODO Auto-generated catch block
+			// if the fetch failed, then set it to this String
 			content = "fetch failed";
 		}
 		
-		
-		
-		
+		//set the output
 		request.setAttribute("Threads", content);
+		
+		
+		//return page
 		request.getRequestDispatcher("./threads.jsp").forward(request,response);
 	}
 
@@ -98,20 +106,20 @@ public class Threads extends HttpServlet {
 		String action = request.getParameter("hidden");
 		
 		//determine what action to take
-		if(action.contentEquals("next")) {
+		if(action.contentEquals("next")) { //if is is next then increment top and bottom by 20
 			a = Actions.NEXT;
 			bottom = top;
 			top += 20;
-		}else if (action.contentEquals("back")) {
+		}else if (action.contentEquals("back")) {//if it is back, decrement by 20
 			a = Actions.BACK;
-			if(bottom < 20 || top < 40) {
+			if(bottom < 20 || top < 40) { //check to see if the values are still high enough
 				bottom = 0;
 				top = 20;
-			}else {
+			}else { //the values are too low, just reset them
 				top = bottom;
 				bottom -= 20;
 			}
-		}else {
+		}else { //nothing is being done
 			a = Actions.NONE;
 			
 		}

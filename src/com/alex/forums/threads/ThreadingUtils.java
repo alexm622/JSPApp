@@ -52,10 +52,7 @@ public class ThreadingUtils {
 	
 	public static String parseToDivs(int offset) throws ClassNotFoundException, IOException, SQLException, IdNotExists {
 		
-		//html elements
-		final String div = " <div class=\"status-entry color6\"> <table> ? </table> </div>";
-		final String row = "<tr> ? </tr>";
-		final String column = "<th> ? <th>";
+		//output string
 		String out = "";
 		
 		//stringbuilder for final output
@@ -66,6 +63,12 @@ public class ThreadingUtils {
 		
 		//arraylist of threads
 		ArrayList<Thread> threads = getThreads(offset, con);
+		
+		//html elements
+		final String div = " <div class=\"status-entry color6\"> ? </div>";
+		final String row = "<tr> ? </tr>";
+		final String column = "<th> ? <th>";
+		final String table = "<table> ? </table>";
 		
 		for(Thread t : threads) {
 			out = div.replace("?", row);
@@ -94,5 +97,37 @@ public class ThreadingUtils {
 		//return html elements
 		return out.replace("?", sb.toString());
 	}
+	
+	private static String makeForm(Thread t) {
+		final String form = "<form name=\"!\" method=\"POST\" action=\"Posts\">"
+				+ "<input name=\"id\" type=\"hidden\" value=\"!\"/>"
+				+ "?"
+				+ "</form>";
+		
+		//get the thread id
+		long id = t.id;
+		
+		//replace the values
+		String out = form.replaceAll("!", (new Long(id).toString()));
+		
+		//return the forms
+		return out;	
+	}
+	
+	private static String makeLink(Thread t) {
+		//the html link element
+		final String link = "<a href=\"Posts\" onlick=\"document.!.submit();\">?</a>";
+		
+		//fetch the variables from Thread
+		long id = t.id;
+		String name = t.name;
+		
+		//make the link
+		String out = (link.replaceAll("!", (new Long(id).toString()))).replace("?", name);
+		
+		return out;
+		
+	}
+	
 	
 }
