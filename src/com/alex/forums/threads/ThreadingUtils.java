@@ -69,15 +69,16 @@ public class ThreadingUtils {
 		final String row = "<tr> ? </tr>";
 		final String column = "<th> ? <th>";
 		final String table = "<table> ? </table>";
+		final String button = "<button class=\"link\" name=\"submit\" type=\"submit\" value=\"?\"> ? </button>";
 		
 		for(Thread t : threads) {
-			out = div.replace("?", row);
+			out = div.replace("?", makeForm(t)).replace("?", table);
 			
 			//make an arraylist containing all of the columns
 			ArrayList<String> columns = new ArrayList<String>();
 			
 			//add columns
-			columns.add(column.replace("?", "Name: " + t.name));
+			columns.add(column.replace("?", makeLink(t)));
 			columns.add(column.replace("?", "Creator: " + UserUtils.idToDisplayName(t.id, con)));
 			columns.add(column.replace("?", "Posts: " + t.postcount));
 			
@@ -116,7 +117,7 @@ public class ThreadingUtils {
 	
 	private static String makeLink(Thread t) {
 		//the html link element
-		final String link = "<a href=\"Posts\" onlick=\"document.!.submit();\">?</a>";
+		final String link = "<a onclick=\"this.closest('form').submit();return false;\">?</a>";
 		
 		//fetch the variables from Thread
 		long id = t.id;
