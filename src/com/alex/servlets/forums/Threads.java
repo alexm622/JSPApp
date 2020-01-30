@@ -83,6 +83,10 @@ public class Threads extends HttpServlet {
 			//generate the content of the page
 			content = ThreadingUtils.parseToDivs(bottom);
 			
+			if(!content.contains("div")) {
+				content = " <div class=\"status-entry color6\"> nothing to see here </div>";
+			}
+			
 			//debug
 			System.out.println("content: " + content);
 			

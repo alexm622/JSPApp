@@ -22,6 +22,9 @@
 		</style>
 	</head>
 	<body class="color5">
+	<h1>
+		Threads
+	</h1>
 	${Threads}
 	<div>
 	
@@ -29,15 +32,15 @@
 		<input name="hidden" type="hidden" />
 			<table>
 				<tr>
-				<th>
-				<input type="button" name="back" value="back" class="button_threads dark1" onclick="{document.nxt.hidden.value='back';document.nxt.submit();}"/>
-				</th>
-				<th>
-				<input type="button"  name="next" value="next" class="button_threads dark1" onclick="{document.nxt.hidden.value='next';document.nxt.submit();}"/>
-				</th>
-				<th>
-				Items ${range}
-				</th>
+					<th>
+						<input type="button" name="back" value="back" class="button_threads dark1" onclick="{document.nxt.hidden.value='back';document.nxt.submit();}"/>
+					</th>
+					<th>
+						<input type="button"  name="next" value="next" class="button_threads dark1" onclick="{document.nxt.hidden.value='next';document.nxt.submit();}"/>
+					</th>
+					<th>
+						Items ${range}
+					</th>
 				</tr>
 			</table>
 		</form>
