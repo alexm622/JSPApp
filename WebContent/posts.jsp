@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Posts</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css">
 		<style type="text/css">
 			a:link{
@@ -28,7 +28,7 @@
 	${Threads}
 	<div>
 	
-		<form name="nxt" method="POST" action="Threads">	
+		<form name="nxt" method="POST" action="Posts">	
 		<input name="hidden" type="hidden" />
 			<table>
 				<tr>
