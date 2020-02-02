@@ -45,11 +45,11 @@ public class PostUtils {
 					rs.getString(6), //content
 					rs.getLong(7), // likes
 					rs.getLong(8), //dislikes
-					rs.getBoolean(9), 
-					rs.getBoolean(10),
-					rs.getBoolean(11),
-					rs.getLong(12)
-					); //get isLocked
+					rs.getBoolean(9), //get isDeleted
+					rs.getBoolean(10), //get isLocked
+					rs.getBoolean(11), //get isArchived
+					rs.getLong(12) //get parent thread
+					); 
 			
 			//add the post
 			posts.add(p);
@@ -109,7 +109,7 @@ public class PostUtils {
 	}
 	
 	private static String makeForm(Post p) {
-		final String form = "<form name=\"!\" method=\"POST\" action=\"Post\">"
+		final String form = "<form name=\"!\" method=\"POST\" action=\"PostServlet\">"
 				+ "<input name=\"id\" type=\"hidden\" value=\"!\"/>"
 				+ "?"
 				+ "</form>";
@@ -135,7 +135,7 @@ public class PostUtils {
 		//the html link element
 		final String link = "<a onclick=\"this.closest('form').submit();return false;\">?</a>";
 		
-		//fetch the variables from Post
+		//fetch the variables from PostServlet
 		long id = p.id;
 		String name = p.title;
 		
