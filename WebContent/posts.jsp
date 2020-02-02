@@ -30,6 +30,8 @@
 	
 		<form name="nxt" method="POST" action="Posts">	
 		<input name="hidden" type="hidden" />
+		<input name="top" type="hidden" value="${top}"/>
+		<input name="bottom" type="hidden" value="${bottom}"/>
 			<table>
 				<tr>
 					<th>

@@ -113,12 +113,19 @@ public class PostUtils {
 				+ "<input name=\"id\" type=\"hidden\" value=\"!\"/>"
 				+ "?"
 				+ "</form>";
+		final String input1 = "<input name=\"postID\" type=\"hidden\" value=\"!\" /> ?";
+		
+		
+		
+		
 		
 		//get the post id
 		long id = p.id;
 		
 		//replace the values
 		String out = form.replaceAll("!", (new Long(id).toString()));
+		out = out.replace("?" , input1);
+		out = out.replace("!", (new Long(p.parentThread)).toString());
 		
 		//return the forms
 		return out;	

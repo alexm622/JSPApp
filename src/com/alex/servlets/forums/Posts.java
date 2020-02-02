@@ -59,11 +59,13 @@ public class Posts extends HttpServlet {
 			
 			
 			//add cookies
-			response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
-			response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
+			//response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
+			//response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
 			
 			//output the content
 			request.setAttribute("Posts", content);
+			request.setAttribute("top", top);
+			request.setAttribute("bottom", bottom);
 			
 			//return page
 			request.getRequestDispatcher("./posts.jsp").forward(request,response);
@@ -102,6 +104,8 @@ public class Posts extends HttpServlet {
 		
 		//set the output
 		request.setAttribute("posts", content);
+		request.setAttribute("top", top);
+		request.setAttribute("bottom", bottom);
 		
 		
 		//return page
@@ -113,7 +117,17 @@ public class Posts extends HttpServlet {
 		
 		//get the action
 		String action = request.getParameter("hidden");
-		id = Long.parseLong(request.getParameter("id"));
+		if(!(request.getParameter("top") == null)) {
+			top = Integer.parseInt(request.getParameter("top"));
+			bottom = Integer.parseInt(request.getParameter("bottom"));
+		}
+		if(!(request.getParameter("id") == null)) {
+			id = 0;
+		}else {
+			id = Long.parseLong(request.getParameter("id"));
+		}
+		
+		
 		
 		
 		//determine what action to take
