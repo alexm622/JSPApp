@@ -60,6 +60,8 @@ public class PostUtils {
 	
 	public static String parseToDivs(int offset, long parent) throws ClassNotFoundException, IOException, SQLException, IdNotExists {
 		
+		System.out.println("Parent = " + parent);
+		
 		//output string
 		String out = "";
 		
@@ -107,7 +109,7 @@ public class PostUtils {
 	}
 	
 	private static String makeForm(Post p) {
-		final String form = "<form name=\"!\" method=\"POST\" action=\"Posts\">"
+		final String form = "<form name=\"!\" method=\"POST\" action=\"Post\">"
 				+ "<input name=\"id\" type=\"hidden\" value=\"!\"/>"
 				+ "?"
 				+ "</form>";

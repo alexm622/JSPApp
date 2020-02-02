@@ -23,9 +23,9 @@
 	</head>
 	<body class="color5">
 	<h1>
-		Threads
+		Posts
 	</h1>
-	${Threads}
+	${Posts}
 	<div>
 	
 		<form name="nxt" method="POST" action="Posts">	

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+import com.alex.forums.posts.PostUtils;
 import com.alex.forums.threads.ThreadingUtils;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.Cookies;
@@ -28,6 +29,7 @@ public class Posts extends HttpServlet {
 	
 	private String content = "There is no content yet.";
 	private int top = 20, bottom = 0;
+	private long id;
 	private Actions a = Actions.NONE;
     
 	@Override
@@ -46,7 +48,7 @@ public class Posts extends HttpServlet {
 			
 			try {
 				//get the output
-				content = ThreadingUtils.parseToDivs(bottom);
+				content = PostUtils.parseToDivs(bottom, id);
 				
 				//debug
 				System.out.println("content: " + content);
@@ -61,10 +63,10 @@ public class Posts extends HttpServlet {
 			response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
 			
 			//output the content
-			request.setAttribute("Threads", content);
+			request.setAttribute("Posts", content);
 			
 			//return page
-			request.getRequestDispatcher("./threads.jsp").forward(request,response);
+			request.getRequestDispatcher("./posts.jsp").forward(request,response);
 			
 			//break before everything else happens
 			return;
@@ -75,13 +77,16 @@ public class Posts extends HttpServlet {
 		response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
 		
 		
+		
+		
+		
 		//debug
 		System.out.println("action taken, and that action was : " + a.name());
 		System.out.println("top: " + top);
 		System.out.println("botton: " + bottom );
 		try {
 			//generate the content of the page
-			content = ThreadingUtils.parseToDivs(bottom);
+			content = PostUtils.parseToDivs(bottom, id);
 			
 			if(!content.contains("div")) {
 				content = " <div class=\"status-entry color6\"> nothing to see here </div>";
@@ -96,11 +101,11 @@ public class Posts extends HttpServlet {
 		}
 		
 		//set the output
-		request.setAttribute("Threads", content);
+		request.setAttribute("posts", content);
 		
 		
 		//return page
-		request.getRequestDispatcher("./threads.jsp").forward(request,response);
+		request.getRequestDispatcher("./posts.jsp").forward(request,response);
 	}
 
 	@Override
@@ -108,9 +113,13 @@ public class Posts extends HttpServlet {
 		
 		//get the action
 		String action = request.getParameter("hidden");
+		id = Long.parseLong(request.getParameter("id"));
+		
 		
 		//determine what action to take
-		if(action.contentEquals("next")) { //if is is next then increment top and bottom by 20
+		if(action == null) {
+			a = Actions.NONE;
+		}else if(action.contentEquals("next")) { //if is is next then increment top and bottom by 20
 			a = Actions.NEXT;
 			bottom = top;
 			top += 20;
@@ -123,18 +132,11 @@ public class Posts extends HttpServlet {
 				top = bottom;
 				bottom -= 20;
 			}
-		}else { //nothing is being done
-			a = Actions.NONE;
-			
 		}
 		
 		//get the interval
 		
 		Enumeration<String> parameters = request.getParameterNames();
-		
-		
-		
-		
 		
 		
 		while(parameters.hasMoreElements()) {

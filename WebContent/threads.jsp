@@ -28,7 +28,7 @@
 	${Threads}
 	<div>
 	
-		<form name="nxt" method="POST" action="Threads">	
+		<form name="nxt" method="POST" action="Posts">	
 		<input name="hidden" type="hidden" />
 			<table>
 				<tr>

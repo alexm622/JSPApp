@@ -63,7 +63,7 @@ public class CreateUser {
 		//line to insert data into table
 		sql = "insert into Users "
 				+ "(username, id, creationDate, posts, comments, likes, dislikes, usernamehash, passwordhash)"
-				+ " VALUES (?, ?, CURDATE(), 0, 0, 0, 0, ?, ?);";
+				+ " VALUES (?, ?, NOW(), 0, 0, 0, 0, ?, ?);";
 		//create prepared statement
 		stmt = con.prepareStatement(sql);
 		

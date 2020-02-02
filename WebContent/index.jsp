@@ -56,7 +56,7 @@
 		</div>
 		<div class="center">
 			<a href="about.jsp">About</a> | <a href="contents.jsp" >Table of Contents</a> | <a href="stats.jsp">Statistics</a> | <a href="login.jsp"> Login Page</a>
-			| <a href="signup.jsp">Sign Up</a>
+			| <a href="signup.jsp">Sign Up</a> | <a href="Threads">Threads</a>
 		</div>
 	</body>
 </html>
