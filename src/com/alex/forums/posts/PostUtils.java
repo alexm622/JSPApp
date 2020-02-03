@@ -55,6 +55,9 @@ public class PostUtils {
 			posts.add(p);
 			
 		}
+		
+		con.close();
+		
 		return posts;
 	}
 	
@@ -113,7 +116,7 @@ public class PostUtils {
 				+ "<input name=\"id\" type=\"hidden\" value=\"!\"/>"
 				+ "?"
 				+ "</form>";
-		final String input1 = "<input name=\"postID\" type=\"hidden\" value=\"!\" /> ?";
+		final String input1 = "<input name=\"threadID\" type=\"hidden\" value=\"!\" /> ?";
 		
 		
 		
@@ -122,10 +125,13 @@ public class PostUtils {
 		//get the post id
 		long id = p.id;
 		
+		//get the parent thread ID
+		long parent = p.parentThread;
+		
 		//replace the values
+		String in1 = input1.replace("!", (new Long(parent).toString()));
 		String out = form.replaceAll("!", (new Long(id).toString()));
-		out = out.replace("?" , input1);
-		out = out.replace("!", (new Long(p.parentThread)).toString());
+		out = out.replace("?" , in1);
 		
 		//return the forms
 		return out;	
