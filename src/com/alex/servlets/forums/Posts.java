@@ -3,6 +3,7 @@ package com.alex.servlets.forums;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import com.alex.forums.posts.PostUtils;
 import com.alex.forums.threads.ThreadingUtils;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.Cookies;
+import com.alex.utils.web.QueryUtils;
 
 @WebServlet("/Posts")
 public class Posts extends HttpServlet {
@@ -31,9 +33,43 @@ public class Posts extends HttpServlet {
 	private int top = 20, bottom = 0;
 	private long id;
 	private Actions a = Actions.NONE;
+	private boolean useForms = false;
     
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getQueryString() == null) {
+			System.out.println("query string is null");
+		}else {
+			System.out.println("query string is : " + request.getQueryString());
+			
+			HashMap<String, String> hm = QueryUtils.splitQuery(request.getQueryString());
+			
+			//try to use the query data instead of the form data
+			
+			try {
+				
+				//test to see if those keys exist
+				if(!(hm.containsKey("id"))) {
+					//if they don't exist throw an error
+					throw new NullPointerException();
+				}
+				
+				//set the thread ID and id
+				
+				
+				id = Long.parseLong(hm.get("id"));
+				
+				//don't use the forms
+				useForms = false;
+				System.out.println("using query");
+			}catch(NullPointerException e) {
+				//we're using the form data!!
+				System.out.println("not using query data");
+				useForms = true;
+			}
+			
+		}
 		
 		//set the range in threads
 		request.setAttribute("range", (new String(bottom + "-" + top)));
