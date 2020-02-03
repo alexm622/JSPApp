@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.alex.forums.comments.Comment;
 import com.alex.forums.posts.Post;
 import com.alex.forums.users.utils.UserUtils;
 import com.alex.utils.exceptions.IdNotExists;
@@ -14,7 +16,11 @@ import com.alex.utils.sql.SQLConnect;
 public class PostPage {
 	
 	private static String br = "<br/>";
+	
+	//max comments to fetch
 	private static final int COUNT = 20;
+	
+	//mac subcomments to fetch
 	private static final int MAX_SUBCOMMENTS = 5;
 	
 	
@@ -88,7 +94,7 @@ public class PostPage {
 		
 		String content = p.content;
 		
-		final String sub_div = "<div class=\"status-entry color5\"> ! </div> <br/> ? ";
+		final String sub_div = "<div class=\"status-entry color7\"> ! </div> <br/> ? ";
 		
 		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
 		
@@ -108,7 +114,18 @@ public class PostPage {
 	
 	private static String makeComments(Post p) {
 		// TODO make this
+		
+		ArrayList<Comment> comments = getComments(p);
+		
 		return "";
+	}
+	
+	private static ArrayList<Comment> getComments(Post p){
+		
+		
+		
+		
+		return null;
 	}
 	
 	

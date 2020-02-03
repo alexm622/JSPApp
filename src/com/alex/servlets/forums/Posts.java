@@ -54,6 +54,7 @@ public class Posts extends HttpServlet {
 				System.out.println("content: " + content);
 			} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 				//if for some reason there was nothing
+				e.printStackTrace();
 				content = "fetch failed";
 			}
 			

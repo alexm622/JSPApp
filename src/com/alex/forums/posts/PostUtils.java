@@ -56,7 +56,7 @@ public class PostUtils {
 			
 		}
 		
-		con.close();
+		;
 		
 		return posts;
 	}
@@ -107,12 +107,15 @@ public class PostUtils {
 			
 		}
 		
+		//close the connection
+		con.close();
+		
 		//return html elements
 		return out.replace("?", sb.toString());
 	}
 	
 	private static String makeForm(Post p) {
-		final String form = "<form name=\"!\" method=\"POST\" action=\"PostServlet\">"
+		final String form = "<form name=\"!\" method=\"POST\" action=\"Post\">"
 				+ "<input name=\"id\" type=\"hidden\" value=\"!\"/>"
 				+ "?"
 				+ "</form>";
