@@ -66,7 +66,7 @@
 						<td>
 							<div class="g-recaptcha center" data-sitekey="6LfhI9IUAAAAAPXoO5hndk889uUJ6wfzeOEXAGw8"></div>
 						</td>
-						<td style="color: #ff0000; background-color: #202040; max-width: 25px;">
+						<td style="color: #ff0000; background-color: #202040; max-width: 250px;">
 						I would highly suggest that if you decide to sign up for this site, you
 						 use a password which you have not used before. This site is still a WIP,
 						  so there may be a multitude of vulnerabilities, some of which could end up exposing

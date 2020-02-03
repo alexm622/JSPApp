@@ -49,5 +49,8 @@
 			</div>
 			<button type="submit" class="button color6" value="Submit">Login</button>
 		</form>
+		<div class="center">
+			<a href="index.jsp" class="center">Home Page</a>
+		</div>
 	</body>
 </html>
