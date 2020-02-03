@@ -117,16 +117,16 @@ public class ThreadingUtils {
 	
 	private static String makeLink(Thread t) {
 		//the html link element
-		final String link = "<a onclick=\"this.closest('form').submit();return false;\">?</a>";
-		
-		//fetch the variables from Thread
-		long id = t.id;
-		String name = t.name;
-		
-		//make the link
-		String out = (link.replaceAll("!", (new Long(id).toString()))).replace("?", name);
-		
-		return out;
+			final String link = "<a href=\"Posts?id=!\">~</a>";
+			
+			//fetch the variables from PostServlet
+			long id = t.id;
+			String name = t.name;
+			
+			//make the link
+			String out = (link.replaceAll("!", (new Long(id).toString()))).replace("~", name);
+			
+			return out;
 		
 	}
 	

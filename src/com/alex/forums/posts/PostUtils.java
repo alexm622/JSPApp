@@ -142,14 +142,14 @@ public class PostUtils {
 	
 	private static String makeLink(Post p) {
 		//the html link element
-		final String link = "<a onclick=\"this.closest('form').submit();return false;\">?</a>";
+		final String link = "<a href=\"Post?id=!&thread=@\">~</a>";
 		
 		//fetch the variables from PostServlet
 		long id = p.id;
 		String name = p.title;
 		
 		//make the link
-		String out = (link.replaceAll("!", (new Long(id).toString()))).replace("?", name);
+		String out = (link.replaceAll("!", (new Long(id).toString()))).replace("~", name).replace("@", (new Long(p.parentThread)).toString());
 		
 		return out;
 		
