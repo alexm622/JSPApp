@@ -45,6 +45,29 @@ public class Posts extends HttpServlet {
 			
 			HashMap<String, String> hm = QueryUtils.splitQuery(request.getQueryString());
 			
+			try { //get top and bottom
+				if(!(hm.containsKey("top")) || !(hm.containsKey("bottom"))) {
+					throw new NullPointerException();
+				}
+				
+				int tempTop, tempBottom;
+				
+				tempTop = Integer.parseInt(hm.get("top"));
+				tempBottom = Integer.parseInt(hm.get("bottom"));
+				
+				if((tempTop > 0) && (tempBottom > 0) && (tempTop > tempBottom) && ((tempTop - tempBottom) == 20)) { // verify that these values are good
+					top = tempTop;
+					bottom = tempBottom;
+				}else {
+					//these values didn't match anything
+					throw new NullPointerException();
+				}
+				
+				
+			}catch(NullPointerException e){
+				System.out.println("not using query for top and bottom");
+			}
+			
 			//try to use the query data instead of the form data
 			
 			try {
@@ -54,12 +77,8 @@ public class Posts extends HttpServlet {
 					//if they don't exist throw an error
 					throw new NullPointerException();
 				}
-				
 				//set the thread ID and id
-				
-				
 				id = Long.parseLong(hm.get("id"));
-				
 				//don't use the forms
 				useForms = false;
 				System.out.println("using query");
@@ -101,8 +120,21 @@ public class Posts extends HttpServlet {
 			
 			//output the content
 			request.setAttribute("Posts", content);
-			request.setAttribute("top", top);
-			request.setAttribute("bottom", bottom);
+			
+			String next, back;
+			
+			final String redirect = "\"window.location.href = '/Posts?top=!&bottom=~&id=@'\"";
+			next = redirect.replace("!", (new Integer(top + 20).toString()))
+						   .replace("~", (new Integer(bottom + 20).toString()))
+						   .replace("@", (new Long(id).toString()));
+			
+			back = redirect.replace("!", (new Integer(top - 20).toString()))
+					   .replace("~", (new Integer(bottom - 20).toString()))
+					   .replace("@", (new Long(id).toString()));
+		
+			
+			request.setAttribute("back", next);
+			request.setAttribute("next", back);
 			
 			//return page
 			request.getRequestDispatcher("./posts.jsp").forward(request,response);
