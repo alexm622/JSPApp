@@ -3,6 +3,7 @@ package com.alex.servlets.forums;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import org.jsoup.safety.Whitelist;
 import com.alex.forums.threads.ThreadingUtils;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.Cookies;
+import com.alex.utils.web.QueryUtils;
 
 @WebServlet("/Threads")
 public class Threads extends HttpServlet {
@@ -32,6 +34,33 @@ public class Threads extends HttpServlet {
     
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("query string is : " + request.getQueryString());
+		
+		HashMap<String, String> hm = QueryUtils.splitQuery(request.getQueryString());
+		
+		try { //get top and bottom
+			if(!(hm.containsKey("top")) || !(hm.containsKey("bottom"))) {
+				throw new NullPointerException();
+			}
+			
+			int tempTop, tempBottom;
+			
+			tempTop = Integer.parseInt(hm.get("top"));
+			tempBottom = Integer.parseInt(hm.get("bottom"));
+			
+			if((tempTop > 0) && (tempBottom >= 0) && (tempTop > tempBottom) && ((tempTop - tempBottom) == 20)) { // verify that these values are good
+				top = tempTop;
+				bottom = tempBottom;
+			}else {
+				//these values didn't match anything
+				throw new NullPointerException();
+			}
+			System.out.println("using query for top and bottom");
+			
+		}catch(NullPointerException e){
+			System.out.println("not using query for top and bottom");
+		}
 		
 		//set the range in threads
 		request.setAttribute("range", (new String(bottom + "-" + top)));
@@ -56,9 +85,28 @@ public class Threads extends HttpServlet {
 			}
 			
 			
-			//add cookies
-			response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
-			response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
+			String next, back;
+			
+			int Nexttop, Nextbottom;
+			
+			if(bottom < 20 || top < 40) { //check to see if the values are still high enough
+				Nextbottom = 0;
+				Nexttop = 20;
+			}else { //the values are too low, just reset them
+				Nexttop = bottom;
+				Nextbottom = bottom -  20;
+			}
+			
+			final String redirect = "\"window.location.href = 'Threads?top=!&bottom=~'\"";
+			next = redirect.replace("!", (new Integer(top + 20).toString()))
+					   .replace("~", (new Integer(bottom + 20).toString()));
+		
+			back = redirect.replace("!", (new Integer(Nexttop).toString()))
+						   .replace("~", (new Integer(Nextbottom).toString()));
+		
+			
+			request.setAttribute("next", next);
+			request.setAttribute("back", back);
 			
 			//output the content
 			request.setAttribute("Threads", content);
@@ -70,9 +118,7 @@ public class Threads extends HttpServlet {
 			return;
 		}
 		
-		//add cookies
-		response.addCookie(Cookies.makeCookie("top", (new Integer(top)).toString(), "top", 100));
-		response.addCookie(Cookies.makeCookie("bottom", (new Integer(bottom)).toString(), "bottom", 100));
+		
 		
 		
 		//debug
@@ -94,6 +140,29 @@ public class Threads extends HttpServlet {
 			// if the fetch failed, then set it to this String
 			content = "fetch failed";
 		}
+		
+		String next, back;
+		
+		int Nexttop, Nextbottom;
+		
+		if(bottom < 20 || top < 40) { //check to see if the values are still high enough
+			Nextbottom = 0;
+			Nexttop = 20;
+		}else { //the values are too low, just reset them
+			Nexttop = bottom;
+			Nextbottom = bottom -  20;
+		}
+		
+		final String redirect = "\"window.location.href = 'Threads?top=!&bottom=~'\"";
+		next = redirect.replace("!", (new Integer(top + 20).toString()))
+				   .replace("~", (new Integer(bottom + 20).toString()));
+	
+		back = redirect.replace("!", (new Integer(Nexttop - 20).toString()))
+					   .replace("~", (new Integer(Nextbottom - 20).toString()));
+	
+		
+		request.setAttribute("next", next);
+		request.setAttribute("back", back);
 		
 		//set the output
 		request.setAttribute("Threads", content);

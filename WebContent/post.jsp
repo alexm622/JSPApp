@@ -23,7 +23,7 @@
 	</head>
 	<body class="color5">
 	<h1>
-		Post
+		${Thread}
 	</h1>
 	${Post}
 	</body>

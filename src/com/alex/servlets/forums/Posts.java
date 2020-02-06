@@ -55,14 +55,17 @@ public class Posts extends HttpServlet {
 				tempTop = Integer.parseInt(hm.get("top"));
 				tempBottom = Integer.parseInt(hm.get("bottom"));
 				
-				if((tempTop > 0) && (tempBottom > 0) && (tempTop > tempBottom) && ((tempTop - tempBottom) == 20)) { // verify that these values are good
+				System.out.println("TempTop: " + tempTop);
+				System.out.println("TempBottom: " + tempBottom);
+				
+				if((tempTop > 0) && (tempBottom >= 0) && (tempTop > tempBottom) && ((tempTop - tempBottom) == 20)) { // verify that these values are good
 					top = tempTop;
 					bottom = tempBottom;
 				}else {
 					//these values didn't match anything
 					throw new NullPointerException();
 				}
-				
+				System.out.println("using query for top and bottom");
 				
 			}catch(NullPointerException e){
 				System.out.println("not using query for top and bottom");
@@ -123,18 +126,28 @@ public class Posts extends HttpServlet {
 			
 			String next, back;
 			
-			final String redirect = "\"window.location.href = '/Posts?top=!&bottom=~&id=@'\"";
-			next = redirect.replace("!", (new Integer(top + 20).toString()))
-						   .replace("~", (new Integer(bottom + 20).toString()))
-						   .replace("@", (new Long(id).toString()));
+			int Nexttop, Nextbottom;
 			
-			back = redirect.replace("!", (new Integer(top - 20).toString()))
-					   .replace("~", (new Integer(bottom - 20).toString()))
+			if(bottom < 20 || top < 40) { //check to see if the values are still high enough
+				Nextbottom = 0;
+				Nexttop = 20;
+			}else { //the values are too low, just reset them
+				Nexttop = bottom;
+				Nextbottom = bottom -  20;
+			}
+			
+			final String redirect = "\"window.location.href = 'Posts?top=!&bottom=~&id=@'\"";
+			next = redirect.replace("!", (new Integer(top + 20).toString()))
+					   .replace("~", (new Integer(bottom + 20).toString()))
 					   .replace("@", (new Long(id).toString()));
 		
+			back = redirect.replace("!", (new Integer(Nexttop).toString()))
+						   .replace("~", (new Integer(Nextbottom).toString()))
+						   .replace("@", (new Long(id).toString()));
+		
 			
-			request.setAttribute("back", next);
-			request.setAttribute("next", back);
+			request.setAttribute("next", next);
+			request.setAttribute("back", back);
 			
 			//return page
 			request.getRequestDispatcher("./posts.jsp").forward(request,response);
@@ -153,8 +166,30 @@ public class Posts extends HttpServlet {
 		
 		//debug
 		System.out.println("action taken, and that action was : " + a.name());
-		System.out.println("top: " + top);
-		System.out.println("botton: " + bottom );
+		String next, back;
+		
+		int Nexttop, Nextbottom;
+		
+		if(bottom < 20 || top < 40) { //check to see if the values are still high enough
+			Nextbottom = 0;
+			Nexttop = 20;
+		}else { //the values are too low, just reset them
+			Nexttop = bottom;
+			Nextbottom = bottom - 20;
+		}
+		
+		final String redirect = "\"window.location.href = 'Posts?top=!&bottom=~&id=@'\"";
+		next = redirect.replace("!", (new Integer(Nexttop + 20).toString()))
+				   .replace("~", (new Integer(Nextbottom + 20).toString()))
+				   .replace("@", (new Long(id).toString()));
+	
+		back = redirect.replace("!", (new Integer(Nexttop - 20).toString()))
+					   .replace("~", (new Integer(Nextbottom - 20).toString()))
+					   .replace("@", (new Long(id).toString()));
+	
+		
+		request.setAttribute("next", next);
+		request.setAttribute("back", back);
 		try {
 			//generate the content of the page
 			content = PostUtils.parseToDivs(bottom, id);
@@ -173,8 +208,6 @@ public class Posts extends HttpServlet {
 		
 		//set the output
 		request.setAttribute("posts", content);
-		request.setAttribute("top", top);
-		request.setAttribute("bottom", bottom);
 		
 		
 		//return page

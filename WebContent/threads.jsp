@@ -33,10 +33,10 @@
 			<table>
 				<tr>
 					<th>
-						<input type="button" name="back" value="back" class="button_threads dark1" onclick="{document.nxt.hidden.value='back';document.nxt.submit();}"/>
+						<input type="button" name="back" value="back" class="button_threads dark1" onclick=${back}/>
 					</th>
 					<th>
-						<input type="button"  name="next" value="next" class="button_threads dark1" onclick="{document.nxt.hidden.value='next';document.nxt.submit();}"/>
+						<input type="button"  name="next" value="next" class="button_threads dark1" onclick=${next}/>
 					</th>
 					<th>
 					Items ${range}

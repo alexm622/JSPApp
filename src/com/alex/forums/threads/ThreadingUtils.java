@@ -66,10 +66,9 @@ public class ThreadingUtils {
 		
 		//html elements
 		final String div = " <div class=\"status-entry color6\"> ? </div>";
-		final String row = "<tr> ? </tr>";
 		final String column = "<th> ? <th>";
 		final String table = "<table> ? </table>";
-		final String button = "<button class=\"link\" name=\"submit\" type=\"submit\" value=\"?\"> ? </button>";
+		
 		
 		for(Thread t : threads) {
 			out = div.replace("?", makeForm(t)).replace("?", table);
@@ -128,6 +127,38 @@ public class ThreadingUtils {
 			
 			return out;
 		
+	}
+	
+	public static Thread getThreadById(long id) throws ClassNotFoundException, IOException, SQLException {
+		
+		
+		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
+		
+		//fetch 20 items from table with offset offset
+		String sql = "SELECT * FROM forums.Threads WHERE id=?";
+		
+		//get the prepare statement
+		PreparedStatement stmt = con.prepareStatement(sql);
+		
+		//set the parameters
+		stmt.setLong(1, id);
+		
+		//execute the query
+		ResultSet rs = stmt.executeQuery();
+		
+		Thread t = new Thread(
+				rs.getLong(1), //get id
+				rs.getString(2), //get name
+				rs.getString(3), //get creator
+				rs.getLong(4), //get creatorID
+				rs.getDate(5), //get creationDate
+				rs.getLong(6), //get postcount
+				rs.getBoolean(7), //get isDeleted
+				rs.getBoolean(8), //get isArchived
+				rs.getBoolean(9)); //get isLocked
+		
+		
+		return t;
 	}
 	
 	
