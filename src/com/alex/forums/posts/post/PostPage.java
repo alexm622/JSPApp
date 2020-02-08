@@ -122,12 +122,49 @@ public class PostPage {
 		return "";
 	}
 	
-	private static ArrayList<Comment> getComments(Post p){
+	private static ArrayList<Comment> getComments(Post p, long parentComment){
+		
+		long parent = p.parentThread;
+		long post = p.id;
+		
+		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
+
+		//arraylist of comments
+		ArrayList<Comment> comments = new ArrayList<>();
+		
+		//fetch n items from table with offset offset
+		String sql = "SELECT * FROM forums.Comments WHERE parentThread=?, parentPost=?, parentComment=? LIMIT ?";
+		
+		//get the prepare statement
+		PreparedStatement stmt = con.prepareStatement(sql);
+		
+		//set the parameters
+		stmt.setLong(1, parent);
+		stmt.setLong(2, post);
+		stmt.setLong(3, parentComment);
 		
 		
 		
+		//execute the query
+		ResultSet rs = stmt.executeQuery();
 		
-		return null;
+		//iterate through the rows
+		/* id, title,  creator,  creatorID, creationDate, content,  likes,
+		 *   dislikes, isDeleted, isArchived,
+		 *    isLocked, parentThread*/
+		while(rs.next()) {
+			Comment c = new Comment(
+					);
+			
+			//add the post
+			comments.add(c);
+			
+		}
+		
+		;
+		
+		return comments;
+
 	}
 	
 	
