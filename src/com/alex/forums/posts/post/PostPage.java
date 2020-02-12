@@ -105,21 +105,38 @@ public class PostPage {
 		
 		String out = div.replace("?", sub);
 		
-		out = out.replace("?", content);
-		
-		
+		out = out.replace("?", content) + br;
 		
 		return out;
 	}
 	
-	private static String makeComments(Post p) throws ClassNotFoundException, SQLException, IOException {
+	private static String makeComments(Post p) throws ClassNotFoundException, SQLException, IOException, IdNotExists {
 		// TODO make this
 		
-		ArrayList<Comment> comments = getComments(p, 0);
+		ArrayList<Comment> comments = getComments(p, -1);
 		
+		String commentBlocks = "";
 		
+		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
 		
-		return "";
+		for(Comment c : comments) {
+			final String sub_div = "<div class=\"status-entry color7\"> ! </div> <br/> ? ";
+			final String div = " <div class=\"status-entry color6\"> ? </div>";
+			
+			String comment_info = "Made by: " + UserUtils.idToDisplayName(c.id, con) + " creation date: " + p.creationDate.toString();
+			
+			String sub = sub_div.replace("!", comment_info);
+			
+			String out = div.replace("?", sub);
+			
+			out = out.replace("?", c.content) + br;
+			
+			commentBlocks += out;
+		}
+		
+		final String div = " <div> ? </div>";
+		
+		return div.replace("?", commentBlocks);
 	}
 	
 	private static ArrayList<Comment> getComments(Post p, long parentComment) throws SQLException, ClassNotFoundException, IOException{
@@ -133,7 +150,7 @@ public class PostPage {
 		ArrayList<Comment> comments = new ArrayList<>();
 		
 		//fetch n items from table with offset offset
-		String sql = "SELECT * FROM forums.Comments WHERE parentThread=?, parentPost=?, parentComment=? LIMIT ?";
+		String sql = "SELECT * FROM forums.Comments WHERE parentThread=? AND parentPost=? AND parentComment=? LIMIT ?;";
 		
 		//get the prepare statement
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -142,6 +159,7 @@ public class PostPage {
 		stmt.setLong(1, parent);
 		stmt.setLong(2, post);
 		stmt.setLong(3, parentComment);
+		stmt.setInt(4, COUNT);
 		
 		
 		
@@ -173,6 +191,8 @@ public class PostPage {
 			
 			//add the post
 			comments.add(c);
+			
+			System.out.println("comment " + c.content );
 			
 		}
 		
