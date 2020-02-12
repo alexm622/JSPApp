@@ -112,17 +112,17 @@ public class PostPage {
 		return out;
 	}
 	
-	private static String makeComments(Post p) {
+	private static String makeComments(Post p) throws ClassNotFoundException, SQLException, IOException {
 		// TODO make this
 		
-		ArrayList<Comment> comments = getComments(p);
+		ArrayList<Comment> comments = getComments(p, 0);
 		
 		
 		
 		return "";
 	}
 	
-	private static ArrayList<Comment> getComments(Post p, long parentComment){
+	private static ArrayList<Comment> getComments(Post p, long parentComment) throws SQLException, ClassNotFoundException, IOException{
 		
 		long parent = p.parentThread;
 		long post = p.id;
@@ -149,19 +149,32 @@ public class PostPage {
 		ResultSet rs = stmt.executeQuery();
 		
 		//iterate through the rows
-		/* id, title,  creator,  creatorID, creationDate, content,  likes,
-		 *   dislikes, isDeleted, isArchived,
-		 *    isLocked, parentThread*/
+		/*
+		 * long id String creator, long creatorID,
+			String content, long likes, long dislikes,
+			boolean isDeleted, long parentThread, long parentComment,
+			boolean isLocked
+		 */
 		while(rs.next()) {
 			Comment c = new Comment(
+					rs.getLong(1),
+					rs.getString(2),
+					rs.getLong(3),
+					rs.getDate(4),
+					rs.getString(5),
+					rs.getLong(6),
+					rs.getLong(7),
+					rs.getBoolean(8),
+					rs.getBoolean(9),
+					rs.getLong(10),
+					rs.getLong(11),
+					rs.getLong(12)
 					);
 			
 			//add the post
 			comments.add(c);
 			
 		}
-		
-		;
 		
 		return comments;
 
