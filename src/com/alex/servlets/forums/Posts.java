@@ -228,7 +228,12 @@ public class Posts extends HttpServlet {
 		if(!(request.getParameter("id") == null)) {
 			id = 0;
 		}else {
-			id = Long.parseLong(request.getParameter("id"));
+			try {
+				id = Long.parseLong(request.getParameter("id"));
+			}catch(NumberFormatException e) {
+				response.sendRedirect("Threads");
+				return;
+			}
 		}
 		
 		
