@@ -44,11 +44,17 @@ public class Threads extends HttpServlet {
 				throw new NullPointerException();
 			}
 			
-			int tempTop, tempBottom;
+			int tempTop = 20, tempBottom = 0;
 			
-			tempTop = Integer.parseInt(hm.get("top"));
-			tempBottom = Integer.parseInt(hm.get("bottom"));
-			
+			try {
+				tempTop = Integer.parseInt(hm.get("top"));
+				tempBottom = Integer.parseInt(hm.get("bottom"));
+				
+			}catch(NumberFormatException e) {
+				
+				response.sendRedirect("Threads");
+				return;
+			}
 			if((tempTop > 0) && (tempBottom >= 0) && (tempTop > tempBottom) && ((tempTop - tempBottom) == 20)) { // verify that these values are good
 				top = tempTop;
 				bottom = tempBottom;

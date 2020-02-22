@@ -61,8 +61,15 @@ public class PostServlet extends HttpServlet {
 				
 				//set the thread ID and id
 				
-				threadID = Long.parseLong(hm.get("thread"));
-				id = Long.parseLong(hm.get("id"));
+				try {
+					threadID = Long.parseLong(hm.get("thread"));
+					id = Long.parseLong(hm.get("id"));
+				}catch(NumberFormatException e){
+					response.sendRedirect("Threads");
+					return;
+				}
+				
+				
 				
 				//don't use the forms
 				useForms = false;
@@ -93,6 +100,7 @@ public class PostServlet extends HttpServlet {
 		
 		//redirect
 		request.getRequestDispatcher("post.jsp").forward(request,response);
+		return;
 	}
 
 	@Override

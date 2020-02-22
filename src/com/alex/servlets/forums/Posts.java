@@ -11,11 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-
 import com.alex.forums.posts.PostUtils;
-import com.alex.forums.threads.ThreadingUtils;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.Cookies;
 import com.alex.utils.web.QueryUtils;
@@ -33,7 +29,6 @@ public class Posts extends HttpServlet {
 	private int top = 20, bottom = 0;
 	private long id;
 	private Actions a = Actions.NONE;
-	private boolean useForms = false;
     
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,10 +45,14 @@ public class Posts extends HttpServlet {
 					throw new NullPointerException();
 				}
 				
-				int tempTop, tempBottom;
-				
-				tempTop = Integer.parseInt(hm.get("top"));
-				tempBottom = Integer.parseInt(hm.get("bottom"));
+				int tempTop = 20, tempBottom = 0;			
+				try {
+					tempTop = Integer.parseInt(hm.get("top"));
+					tempBottom = Integer.parseInt(hm.get("bottom"));
+				}catch(NumberFormatException e) {
+					response.sendRedirect("Threads");
+					return;
+				}
 				
 				System.out.println("TempTop: " + tempTop);
 				System.out.println("TempBottom: " + tempBottom);
@@ -81,14 +80,17 @@ public class Posts extends HttpServlet {
 					throw new NullPointerException();
 				}
 				//set the thread ID and id
-				id = Long.parseLong(hm.get("id"));
-				//don't use the forms
-				useForms = false;
+				try {
+					id = Long.parseLong(hm.get("id"));
+				}catch(NumberFormatException e){
+					response.sendRedirect("Threads");
+					return;
+				}
+				
 				System.out.println("using query");
 			}catch(NullPointerException e) {
 				//we're using the form data!!
 				System.out.println("not using query data");
-				useForms = true;
 			}
 			
 		}
