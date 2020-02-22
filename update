@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git pull && ./dockerbuild.sh && ../update.sh
+
