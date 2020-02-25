@@ -10,9 +10,9 @@ RUN rm -r /usr/local/tomcat/conf
 EXPOSE 80 443
 
 #remove the root directory
-RUN rm -r /usr/local/tomcat/webapps/ROOT 
+RUN ls /usr/local/tomcat/webapps/
 #remove the docs
-RUN rm -r /usr/local/tomcat/webapps/docs
+#RUN rm -r /usr/local/tomcat/webapps/docs
 #add the hosted files
 RUN mkdir /usr/local/tomcat/webapps/hosted
 #add the hosted files
