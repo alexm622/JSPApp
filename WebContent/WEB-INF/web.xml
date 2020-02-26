@@ -22,6 +22,10 @@
 	  <url-pattern>/forums</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+	  <servlet-name>Comment</servlet-name>
+	  <url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login.jsp</url-pattern>
   </servlet-mapping>
@@ -40,5 +44,9 @@
   <servlet-mapping>
   	<servlet-name>Threads</servlet-name>
   	<url-pattern>/Threads.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Comment</servlet-name>
+  	<url-pattern>/comment.jsp</url-pattern>
   </servlet-mapping>
 </web-app>
