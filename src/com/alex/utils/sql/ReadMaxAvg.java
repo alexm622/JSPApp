@@ -27,7 +27,7 @@ public class ReadMaxAvg {
 			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
 		}else {
 			//access using special remote account
-			con = DriverManager.getConnection("jdbc:mysql://73.17.34.121:3306/gameserver", "remote", Snippits.readPassword());
+			con = DriverManager.getConnection("jdbc:mysql://192.168.15.4:3306/gameserver", "remote", Snippits.readPassword());
 		}
 		
 		HashMap<String, ArrayList<Pair<Long , Double>>> map = new HashMap<String, ArrayList<Pair<Long , Double>>>();

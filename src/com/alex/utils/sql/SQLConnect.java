@@ -19,7 +19,7 @@ public class SQLConnect {
 			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/" + db,uname, passwd);
 		}else {
 			//access using special remote account
-			con = DriverManager.getConnection("jdbc:mysql://73.17.34.121:3306/" + db, "remote", Snippits.readPassword());
+			con = DriverManager.getConnection("jdbc:mysql://192.168.15.4:3306/" + db, "remote", Snippits.readPassword());
 		}
 		return con;
 	}
