@@ -20,15 +20,8 @@ public class ReadMaxAvg {
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		
-		Connection con;
-		String extern = "73.17.34.121";
-		if(Snippits.getExternalIp().equals(extern)) {
-			//connect across local network
-			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/gameserver","server", "serverpass");
-		}else {
-			//access using special remote account
-			con = DriverManager.getConnection("jdbc:mysql://192.168.15.4:3306/gameserver", "remote", Snippits.readPassword());
-		}
+		Connection con = SQLConnect.getCon("gameserver", "server", "serverpass");
+		
 		
 		HashMap<String, ArrayList<Pair<Long , Double>>> map = new HashMap<String, ArrayList<Pair<Long , Double>>>();
 		
