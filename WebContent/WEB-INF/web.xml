@@ -21,9 +21,13 @@
 	  <servlet-name>PostTest</servlet-name>
 	  <url-pattern>/forums</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Comment</servlet-name>
+  	<servlet-class>com.alex.servlets.forums.Comment</servlet-class>	
+  </servlet>
   <servlet-mapping>
 	  <servlet-name>Comment</servlet-name>
-	  <url-pattern>/comment</url-pattern>
+	  <url-pattern>/Comment.jsp</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
@@ -45,8 +49,5 @@
   	<servlet-name>Threads</servlet-name>
   	<url-pattern>/Threads.jsp</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Comment</servlet-name>
-  	<url-pattern>/comment.jsp</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

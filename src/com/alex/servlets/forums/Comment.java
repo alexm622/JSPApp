@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-@WebServlet("/comment")
+@WebServlet("/Comment")
 public class Comment extends HttpServlet {
 	
 	/**
@@ -26,7 +26,7 @@ public class Comment extends HttpServlet {
 		request.setAttribute("content", content);
 		
 		//redirect
-		request.getRequestDispatcher("editor_test.jsp").forward(request,response);
+		request.getRequestDispatcher("forums/editor_test.jsp").forward(request,response);
 	}
 
 	@Override
