@@ -89,6 +89,9 @@ public class SessionUtils {
 		Cookie[] cookies = request.getCookies();
 		
 		//debug output
+		if(cookies == null) {
+			return "none";
+		}
 		System.out.println("cookie count: " + cookies.length);
 		
 		//iterate through the cookies
@@ -100,7 +103,7 @@ public class SessionUtils {
 			//debug output
 			System.out.println("Cookie number " + temp + " has the name " + c.getName());
 			//if the cookie is a token cookie return its value
-			if(c.getName().contentEquals("Token")) {
+			if(c.getName().contains("Token")) {
 				return c.getValue();
 			}
 		}
