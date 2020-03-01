@@ -46,7 +46,7 @@ public class ParseStats {
 		
 	}
 	
-	private static HashMap<Long, ArrayList<Pair<String, Double>>> sort(HashMap<String, ArrayList<Pair<Long, Double>>> unsorted){
+	private static HashMap<Long, ArrayList<Pair<String, Double>>> sort(HashMap<String, ArrayList<Pair<Long, Double>>> unsorted) throws Exception{
 		HashMap<Long, ArrayList<Pair<String, Double>>> sorted = new HashMap<Long, ArrayList<Pair<String,Double>>>();
 		
 		Set<String> keySet = unsorted.keySet();
@@ -104,7 +104,7 @@ public class ParseStats {
 		return sorted;
 	}
 	
-	private static String getString(ArrayList<Pair<String, Double>> app, Long appid) {
+	private static String getString(ArrayList<Pair<String, Double>> app, Long appid) throws Exception{
 		Games.init();
 		//get game images path
 		String path = Games.games.get(appid);
