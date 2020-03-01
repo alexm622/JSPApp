@@ -16,7 +16,12 @@
 			</div>
 			<div class="status color2">
 		 	<%
+		 	try{
 		 		ParseStats.format(out);
+		 	}catch(Exception e){
+		 		out.println("nothing found");
+		 	}
+		 		
 			 %>
 		
 		
