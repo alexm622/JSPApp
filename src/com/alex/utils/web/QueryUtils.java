@@ -19,8 +19,8 @@ public class QueryUtils {
 		
 		//split up on the equals key
 		for(String value : keys) {
-			String k = value.split("=")[0];
-			String v = value.split("=")[1];
+			String k = value.split("=", 1)[0];
+			String v = value.split("=", 1)[1];
 			
 			//add the key and value
 			hm.put(k, v);
