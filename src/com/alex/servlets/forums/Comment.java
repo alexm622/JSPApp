@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+import com.alex.utils.web.SessionUtils;
+
 @WebServlet("/Comment")
 public class Comment extends HttpServlet {
 	
@@ -19,6 +21,13 @@ public class Comment extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 4962336299528017400L;
 	private static String content;
+	
+	private long thread, parentComment, post;
+	private long userToken;
+	
+	private SessionUtils su;
+	
+	private boolean successful;
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
