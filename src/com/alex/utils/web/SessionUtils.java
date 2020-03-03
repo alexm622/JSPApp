@@ -15,6 +15,7 @@ import com.alex.utils.sql.SQLConnect;
 
 public class SessionUtils {
 
+	public String token;
 	private HttpServletRequest request;
 	
 	public SessionUtils(HttpServletRequest request) {
@@ -25,7 +26,7 @@ public class SessionUtils {
 		
 		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
 		
-		String token = getToken();
+		token = getToken();
 		
 		//debug variable
 		System.out.println("the token is " + token);
@@ -84,7 +85,7 @@ public class SessionUtils {
 		}
 	}
 	
-	private String getToken() {
+	public String getToken() {
 		//get the cookies
 		Cookie[] cookies = request.getCookies();
 		
@@ -112,6 +113,19 @@ public class SessionUtils {
 		return "none";
 		
 		
+	}
+	
+	public static long getId(String token) throws ClassNotFoundException, IOException, SQLException {
+		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
+		
+		//convert the token to an id
+		long id = tokenToID(token, con);
+		
+		//close the connection
+		con.close();
+		
+		//return the id
+		return id;
 	}
 	
 	
