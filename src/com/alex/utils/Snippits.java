@@ -1,9 +1,15 @@
 package com.alex.utils;
 
 import java.net.*;
+import java.util.Date;
 import java.io.*;
 
 public class Snippits {
+	
+	public static java.sql.Date getNow(){
+		Date d = new Date();
+		return (new java.sql.Date(d.getTime()));
+	}
 	
 	public static String getExternalIp() throws IOException  {
 		
