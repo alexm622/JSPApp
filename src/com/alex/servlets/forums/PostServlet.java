@@ -14,6 +14,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import com.alex.forums.posts.post.PostPage;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.QueryUtils;
 
@@ -43,9 +44,9 @@ public class PostServlet extends HttpServlet {
 		 */
 		
 		if(request.getQueryString() == null) {
-			System.out.println("query string is null");
+			Debug.debug("query string is null");
 		}else {
-			System.out.println("query string is : " + request.getQueryString());
+			Debug.debug("query string is : " + request.getQueryString());
 			
 			HashMap<String, String> hm = QueryUtils.splitQuery(request.getQueryString());
 			
@@ -73,10 +74,10 @@ public class PostServlet extends HttpServlet {
 				
 				//don't use the forms
 				useForms = false;
-				System.out.println("using query");
+				Debug.debug("using query");
 			}catch(NullPointerException e) {
 				//we're using the form data!!
-				System.out.println("not using query data");
+				Debug.debug("not using query data");
 				useForms = true;
 			}
 			

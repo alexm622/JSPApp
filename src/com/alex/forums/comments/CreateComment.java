@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.alex.forums.threads.BanStatus;
+import com.alex.utils.Debug;
 import com.alex.utils.Snippits;
 import com.alex.utils.sql.SQLConnect;
 
@@ -87,7 +88,7 @@ public class CreateComment {
 	}
 
 	private static void deleteFromTable(BanStatus bs) {
-		
+		Debug.debug("should delete from table", false);
 	}
 
 }

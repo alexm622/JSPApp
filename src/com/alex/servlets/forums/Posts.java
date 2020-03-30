@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alex.forums.posts.PostUtils;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.Cookies;
 import com.alex.utils.web.QueryUtils;
@@ -34,9 +35,9 @@ public class Posts extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getQueryString() == null) {
-			System.out.println("query string is null");
+			Debug.debug("query string is null");
 		}else {
-			System.out.println("query string is : " + request.getQueryString());
+			Debug.debug("query string is : " + request.getQueryString());
 			
 			HashMap<String, String> hm = QueryUtils.splitQuery(request.getQueryString());
 			
@@ -54,8 +55,8 @@ public class Posts extends HttpServlet {
 					return;
 				}
 				
-				System.out.println("TempTop: " + tempTop);
-				System.out.println("TempBottom: " + tempBottom);
+				Debug.debug("TempTop: " + tempTop);
+				Debug.debug("TempBottom: " + tempBottom);
 				
 				if((tempTop > 0) && (tempBottom >= 0) && (tempTop > tempBottom) && ((tempTop - tempBottom) == 20)) { // verify that these values are good
 					top = tempTop;
@@ -64,10 +65,10 @@ public class Posts extends HttpServlet {
 					//these values didn't match anything
 					throw new NullPointerException();
 				}
-				System.out.println("using query for top and bottom");
+				Debug.debug("using query for top and bottom");
 				
 			}catch(NullPointerException e){
-				System.out.println("not using query for top and bottom");
+				Debug.debug("not using query for top and bottom");
 			}
 			
 			//try to use the query data instead of the form data
@@ -87,10 +88,10 @@ public class Posts extends HttpServlet {
 					return;
 				}
 				
-				System.out.println("using query");
+				Debug.debug("using query");
 			}catch(NullPointerException e) {
 				//we're using the form data!!
-				System.out.println("not using query data");
+				Debug.debug("not using query data");
 			}
 			
 		}
@@ -101,17 +102,17 @@ public class Posts extends HttpServlet {
 		//regenerates a page if nothing has happened
 		if(a == Actions.NONE) {
 			//debug
-			System.out.println("no action taken");
+			Debug.debug("no action taken");
 			
-			System.out.println("top: " + top);
-			System.out.println("botton: " + bottom );
+			Debug.debug("top: " + top);
+			Debug.debug("botton: " + bottom );
 			
 			try {
 				//get the output
 				content = PostUtils.parseToDivs(bottom, id);
 				
 				//debug
-				System.out.println("content: " + content);
+				Debug.debug("content: " + content);
 			} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 				//if for some reason there was nothing
 				e.printStackTrace();
@@ -167,7 +168,7 @@ public class Posts extends HttpServlet {
 		
 		
 		//debug
-		System.out.println("action taken, and that action was : " + a.name());
+		Debug.debug("action taken, and that action was : " + a.name());
 		String next, back;
 		
 		int Nexttop, Nextbottom;
@@ -201,7 +202,7 @@ public class Posts extends HttpServlet {
 			}
 			
 			//debug
-			System.out.println("content: " + content);
+			Debug.debug("content: " + content);
 			
 		} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 			// if the fetch failed, then set it to this String
@@ -263,7 +264,7 @@ public class Posts extends HttpServlet {
 		
 		
 		while(parameters.hasMoreElements()) {
-			System.out.println(parameters.nextElement());
+			Debug.debug(parameters.nextElement());
 		}
 		
 		//send redirect

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.alex.forums.comments.Comment;
 import com.alex.forums.posts.Post;
 import com.alex.forums.users.utils.UserUtils;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.sql.SQLConnect;
 
@@ -35,9 +36,9 @@ public class PostPage {
 	}
 	
 	private static Post getPost(long id, long threadID) throws ClassNotFoundException, IOException, SQLException {
-		System.out.println("the id is " + id);
+		Debug.debug("the id is " + id);
 		
-		System.out.println("the parent thread is " + threadID);
+		Debug.debug("the parent thread is " + threadID);
 		
 		
 		Connection con = SQLConnect.getCon("forums", "server", "serverpass");
@@ -71,7 +72,7 @@ public class PostPage {
 				rs.getLong(12) //get parent thread
 				); 
 		
-		System.out.println("post name is " + p.title);
+		Debug.debug("post name is " + p.title);
 		
 		con.close();
 		return p;
@@ -192,7 +193,7 @@ public class PostPage {
 			//add the post
 			comments.add(c);
 			
-			System.out.println("comment " + c.content );
+			Debug.debug("comment " + c.content );
 			
 		}
 		

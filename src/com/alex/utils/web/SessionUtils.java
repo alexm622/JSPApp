@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import com.alex.forums.users.utils.UserUtils;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.sql.SQLConnect;
 
@@ -29,12 +30,12 @@ public class SessionUtils {
 		token = getToken();
 		
 		//debug variable
-		System.out.println("the token is " + token);
+		Debug.debug("the token is " + token);
 		
 		if(token == "none") {
 			
 			//debug output
-			System.out.println("closing, no token found");
+			Debug.debug("closing, no token found");
 			
 			//close the connection
 			con.close();
@@ -47,7 +48,7 @@ public class SessionUtils {
 		long id = tokenToID(token, con);
 		
 		//debug sysout
-		System.out.println("the id is " + id);
+		Debug.debug("the id is " + id);
 		
 		if(id == -1) {
 			return "";
@@ -93,7 +94,7 @@ public class SessionUtils {
 		if(cookies == null) {
 			return "none";
 		}
-		System.out.println("cookie count: " + cookies.length);
+		Debug.debug("cookie count: " + cookies.length);
 		
 		//iterate through the cookies
 		int temp = 0;
@@ -102,7 +103,7 @@ public class SessionUtils {
 			temp++;
 			
 			//debug output
-			System.out.println("Cookie number " + temp + " has the name " + c.getName());
+			Debug.debug("Cookie number " + temp + " has the name " + c.getName());
 			//if the cookie is a token cookie return its value
 			if(c.getName().contains("Token")) {
 				return c.getValue();

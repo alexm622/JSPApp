@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.UserExists;
 import com.alex.utils.security.HashingUtils;
 import com.alex.utils.sql.SQLConnect;
@@ -17,7 +18,7 @@ public class CreateUser {
 	public static boolean create(String username, String password, String displayname) throws UserExists, ClassNotFoundException, IOException, SQLException {
 		
 		//remove whitespace
-		System.out.println("removing whitespace");
+		Debug.debug("removing whitespace");
 		username = StringUtils.deleteWhitespace(username);
 		
 		//return false if username is taken
@@ -28,9 +29,9 @@ public class CreateUser {
 		String passwordHash = HashingUtils.bcryptHash(password);
 		String usernameHash = HashingUtils.shaHash(username);
 		
-		System.out.println("printing hashes");
-		System.out.println("Username: " + usernameHash);
-		System.out.println("Password: " + passwordHash);
+		Debug.debug("printing hashes");
+		Debug.debug("Username: " + usernameHash);
+		Debug.debug("Password: " + passwordHash);
 		
 		//create a user
 		boolean created = createUser(usernameHash, passwordHash, displayname);
@@ -57,7 +58,7 @@ public class CreateUser {
 		//get next id
 		long nextID = lastID + 1;
 		
-		System.out.println("the next id is " + nextID);
+		Debug.debug("the next id is " + nextID);
 		
 		
 		//line to insert data into table

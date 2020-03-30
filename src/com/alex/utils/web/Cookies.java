@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.InvalidUsername;
 import com.alex.utils.security.HashingUtils;
 import com.alex.utils.sql.SQLConnect;
@@ -39,7 +40,7 @@ public class Cookies {
 		Cookie cookie = createCookie(id, con);
 		
 		String token = cookie.getValue();
-		System.out.println("TokenID " + token);
+		Debug.debug("TokenID " + token);
 		
 		addToken(token, id, con);
 		//add the cookie
@@ -128,7 +129,7 @@ public class Cookies {
 				//there is a cookie field for the token
 				boolean remove = rs.next();
 				//debug
-				System.out.println("does this token already exist: " + remove);
+				Debug.debug("does this token already exist: " + remove);
 				
 				
 				exists = !exists;
@@ -229,7 +230,7 @@ public class Cookies {
 			
 		} while (goodToken);
 		
-		System.out.println("generated token of " + tokenHash);
+		Debug.debug("generated token of " + tokenHash);
 		
 		//return the generated token
 		return tokenHash;

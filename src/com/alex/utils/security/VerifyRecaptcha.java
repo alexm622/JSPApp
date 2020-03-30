@@ -12,6 +12,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
 
+import com.alex.utils.Debug;
 import com.alex.utils.Snippits;
 
 public class VerifyRecaptcha {
@@ -58,7 +59,7 @@ public class VerifyRecaptcha {
 		in.close();
 
 		// print result
-		System.out.println(response.toString());
+		Debug.debug(response.toString());
 		
 		//parse JSON response and return 'success' value
 		JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));

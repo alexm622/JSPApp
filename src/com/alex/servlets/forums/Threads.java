@@ -15,6 +15,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import com.alex.forums.threads.ThreadingUtils;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.web.Cookies;
 import com.alex.utils.web.QueryUtils;
@@ -35,7 +36,7 @@ public class Threads extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("query string is : " + request.getQueryString());
+		Debug.debug("query string is : " + request.getQueryString());
 		
 		HashMap<String, String> hm = QueryUtils.splitQuery(request.getQueryString());
 		
@@ -62,10 +63,10 @@ public class Threads extends HttpServlet {
 				//these values didn't match anything
 				throw new NullPointerException();
 			}
-			System.out.println("using query for top and bottom");
+			Debug.debug("using query for top and bottom");
 			
 		}catch(NullPointerException e){
-			System.out.println("not using query for top and bottom");
+			Debug.debug("not using query for top and bottom");
 		}
 		
 		//set the range in threads
@@ -74,17 +75,17 @@ public class Threads extends HttpServlet {
 		//regenerates a page if nothing has happened
 		if(a == Actions.NONE) {
 			//debug
-			System.out.println("no action taken");
+			Debug.debug("no action taken");
 			
-			System.out.println("top: " + top);
-			System.out.println("botton: " + bottom );
+			Debug.debug("top: " + top);
+			Debug.debug("botton: " + bottom );
 			
 			try {
 				//get the output
 				content = ThreadingUtils.parseToDivs(bottom);
 				
 				//debug
-				System.out.println("content: " + content);
+				Debug.debug("content: " + content);
 			} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 				//if for some reason there was nothing
 				content = "fetch failed";
@@ -128,9 +129,9 @@ public class Threads extends HttpServlet {
 		
 		
 		//debug
-		System.out.println("action taken, and that action was : " + a.name());
-		System.out.println("top: " + top);
-		System.out.println("botton: " + bottom );
+		Debug.debug("action taken, and that action was : " + a.name());
+		Debug.debug("top: " + top);
+		Debug.debug("botton: " + bottom );
 		try {
 			//generate the content of the page
 			content = ThreadingUtils.parseToDivs(bottom);
@@ -140,7 +141,7 @@ public class Threads extends HttpServlet {
 			}
 			
 			//debug
-			System.out.println("content: " + content);
+			Debug.debug("content: " + content);
 			
 		} catch (ClassNotFoundException | SQLException | IdNotExists e) {
 			// if the fetch failed, then set it to this String
@@ -213,7 +214,7 @@ public class Threads extends HttpServlet {
 		
 		
 		while(parameters.hasMoreElements()) {
-			System.out.println(parameters.nextElement());
+			Debug.debug(parameters.nextElement());
 		}
 		
 		//send redirect

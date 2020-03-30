@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+import com.alex.utils.Debug;
 import com.alex.utils.security.Verification;
 import com.alex.utils.web.Cookies;
 
@@ -52,7 +53,7 @@ public class Login extends HttpServlet {
 		try {
 			//check the username and password against the database
 			correct = Verification.isCorrect(username, password);
-			System.out.println(correct);
+			Debug.debug(correct);
 			
 			if(correct) {
 				//TODO add cookies

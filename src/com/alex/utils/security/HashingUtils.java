@@ -2,6 +2,7 @@ package com.alex.utils.security;
 
 import java.nio.charset.StandardCharsets;
 
+import com.alex.utils.Debug;
 import com.google.common.hash.Hashing;
 
 public class HashingUtils 
@@ -27,7 +28,7 @@ public class HashingUtils
     			  .hashString(in, StandardCharsets.UTF_8)
     			  .toString();
     	//print the hash
-    	System.out.println(sha256hex);
+    	Debug.debug(sha256hex);
     	
     	//return the hash
     	return sha256hex;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.jsp.JspWriter;
 
 import com.alex.beans.ServerStatus;
+import com.alex.utils.Debug;
 import com.alex.utils.Snippits;
 
 public class ReadStatuses {
@@ -37,7 +38,7 @@ public class ReadStatuses {
 	
 	//convert the resultset to the java beans
 	private static ArrayList<ServerStatus> toBeans(ResultSet rs, Connection con) throws Exception{
-		System.out.println("reading from sql"); 
+		Debug.debug("reading from sql"); 
 		ArrayList<ServerStatus> ssl = new ArrayList<ServerStatus>();
 		while(rs.next()) {
 			ServerStatus ss = new ServerStatus();

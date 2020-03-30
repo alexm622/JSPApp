@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.alex.forums.users.utils.UserUtils;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.IdNotExists;
 import com.alex.utils.sql.SQLConnect;
 
@@ -63,7 +64,7 @@ public class PostUtils {
 	
 	public static String parseToDivs(int offset, long parent) throws ClassNotFoundException, IOException, SQLException, IdNotExists {
 		
-		System.out.println("Parent = " + parent);
+		Debug.debug("Parent = " + parent);
 		
 		//output string
 		String out = "";

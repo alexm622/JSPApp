@@ -2,6 +2,7 @@ package com.alex.utils.security;
 
 import java.sql.Statement;
 
+import com.alex.utils.Debug;
 import com.alex.utils.sql.SQLConnect;
 
 import java.security.NoSuchAlgorithmException;
@@ -49,7 +50,7 @@ public class Verification {
 			hash = rs.getString(2);
 			
 			//print the hash
-			System.out.println(hash);
+			Debug.debug(hash);
 			
 			//test to see if the  hash and password correspond
 			//if the hash and password correspond break and return true
@@ -69,7 +70,7 @@ public class Verification {
 		String hash = HashingUtils.shaHash(username);
 		
 		//print the hash
-		System.out.println(hash);
+		Debug.debug(hash);
 		
 		//return the hash
 		return hash;

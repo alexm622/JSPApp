@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+import com.alex.utils.Debug;
 import com.alex.utils.sql.SQLConnect;
 import com.alex.utils.web.QueryUtils;
 import com.alex.utils.web.SessionUtils;
@@ -41,7 +42,7 @@ public class Comment extends HttpServlet {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm = QueryUtils.splitQuery(query);
 		if(hm.equals(new HashMap<String, String>()) || !hasAll(hm)) {
-			System.out.println("Comment query failed");
+			Debug.debug("Comment query failed");
 			request.getRequestDispatcher("Threads").forward(request,response);
 			return;		
 		}
@@ -51,7 +52,7 @@ public class Comment extends HttpServlet {
 			parentComment = Long.parseLong(hm.get("id"));
 			post = Long.parseLong(hm.get("post"));
 		}catch(NumberFormatException e) {
-			System.out.println("Comment query failed");
+			Debug.debug("Comment query failed");
 			request.getRequestDispatcher("Threads").forward(request,response);
 			return;	
 		}

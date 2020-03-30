@@ -14,6 +14,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import com.alex.forums.users.CreateUser;
+import com.alex.utils.Debug;
 import com.alex.utils.exceptions.UserExists;
 import com.alex.utils.security.Passwords;
 import com.alex.utils.security.VerifyRecaptcha;
@@ -59,8 +60,8 @@ public class SignUp extends HttpServlet {
 		this.displayName = Jsoup.clean(request.getParameter("display"), Whitelist.none());
 		
 		//print the passwords
-		System.out.println("password1: " + password1);
-		System.out.println("password2: " + password2);
+		Debug.debug("password1: " + password1);
+		Debug.debug("password2: " + password2);
 		
 		//get the login username
 		this.username = Jsoup.clean(request.getParameter("username"), Whitelist.none());
@@ -78,7 +79,7 @@ public class SignUp extends HttpServlet {
 			if(password1.length() <= 7) {
 				error = "password is too small";
 			}else if(Passwords.calculatePasswordStrength(password1) < 7) { //check complexity
-				System.out.println("password score = " + Passwords.calculatePasswordStrength(password1));
+				Debug.debug("password score = " + Passwords.calculatePasswordStrength(password1));
 				error = "password must contain at one number, one uppercase letter, and one lowercase letter";
 			}else if(!password1.equals(password2)) {// check to see if they match
 				error = "passwords do not match";
@@ -87,14 +88,14 @@ public class SignUp extends HttpServlet {
 			
 			//recaptcha stuff
 			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-//			System.out.println(gRecaptchaResponse);
+//			Debug.debug(gRecaptchaResponse);
 			//verify to check if recaptcha was good
 			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 			
 			//set the user create var to false
 			boolean created = false;
 			if(verify && error == "") { //if recaptcha is good and error is nothing
-				System.out.println("creating user");
+				Debug.debug("creating user");
 				created = CreateUser.create(username, password1, displayName);
 			}else {
 				if(!verify) { //if recaptcha is failed
@@ -105,14 +106,14 @@ public class SignUp extends HttpServlet {
 				error = null;
 				//set the result
 				result = "account created properly";
-				System.out.println("account " + username + " was created? " + created);
+				Debug.debug("account " + username + " was created? " + created);
 			}
 			//print if the account was created
 			
 		} catch (UserExists e) {
 			//if that username is already in use
-			System.out.println("username " + username + " already exists");
-			System.out.println(e.getMessage());
+			Debug.debug("username " + username + " already exists");
+			Debug.debug(e.getMessage());
 			//set the error to the error message
 			error = e.getMessage();
 		//errors thrown by called functions
