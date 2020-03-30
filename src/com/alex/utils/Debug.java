@@ -17,7 +17,7 @@ public class Debug {
 
 			//log file output
 			PrintWriter out = new PrintWriter(new FileWriter(
-				"\\tmp\\server\\logs\\" + dateFormat.format(date) + ".txt", true));
+				"/tmp/server/logs/" + dateFormat.format(date) + ".txt", true));
 			//create the dateformat
 			dateFormat = new SimpleDateFormat("[yyyy:MM:dd HH:mm:ss] -- ");
 
@@ -57,7 +57,7 @@ public class Debug {
 			out.close();
 		} catch (IOException e) {
 			//make folders assuming that it doesn't exist
-			File f = new File("\\tmp\\server\\logs\\");
+			File f = new File("/tmp/server/logs/");
 			f.mkdirs();
 			debug("attempting to create logs folder to fix issue");
 			
@@ -74,7 +74,7 @@ public class Debug {
 
 			//log file output
 			PrintWriter out = new PrintWriter(new FileWriter(
-				"\\tmp\\server\\logs\\" + dateFormat.format(date) + ".txt", true));
+				"/tmp/server/logs/" + dateFormat.format(date) + ".txt", true));
 			//create the dateformat
 			dateFormat = new SimpleDateFormat("[yyyy:MM:dd HH:mm:ss] -- ");
 
@@ -110,7 +110,7 @@ public class Debug {
 			out.close();
 		} catch (IOException e) {
 			//make folder assuming it doesn't exist
-			File f = new File("\\tmp\\server\\logs\\");
+			File f = new File("/tmp/server/logs/");
 			f.mkdirs();
 			debug("attempting to create logs folder to fix issue");
 		}
