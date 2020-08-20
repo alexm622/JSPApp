@@ -40,6 +40,7 @@ RUN dos2unix /usr/local/tomcat/bin/launchscript.sh
 ADD target/JSPapp.war /usr/local/tomcat/webapps
 
 #make it the root webapp
+RUN rm -r /usr/local/tomcat/webapps/ROOT
 RUN mv /usr/local/tomcat/webapps/JSPapp.war /usr/local/tomcat/webapps/ROOT.war
 
 #set the entrypoint
