@@ -49,8 +49,10 @@
 			</div>
 			<button type="submit" class="button color6" value="Submit">Login</button>
 		</form>
-		<div class="center">
-			<a href="index.jsp" class="center">Home Page</a>
+		<div class="status-entry color6 center">
+			<a href="index.jsp" class="center">Home Page</a> |
+			<a href="threads.jsp">Threads</a> |
+			<a href="signup.jsp">Sign Up</a>
 		</div>
 	</body>
 </html>

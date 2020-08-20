@@ -45,5 +45,9 @@
 			</table>
 		</form>
 	</div>
-	</body>
+	<div class="status-entry color6 center">
+		<a href="login.jsp"> Login Page</a>
+		| <a href="signup.jsp">Sign Up</a>
+	</div>
+</body>
 </html>
