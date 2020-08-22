@@ -16,10 +16,10 @@ public class SQLConnect {
 		String extern = "73.17.34.121";
 		if(Snippits.getExternalIp().equals(extern)) {
 			//connect across local network
-			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/" + db,uname, passwd);
+			con = DriverManager.getConnection("jdbc:mysql://10.0.0.6:3306/" + db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=EST",uname, passwd);
 		}else {
 			//access using special remote account
-			con = DriverManager.getConnection("jdbc:mysql://192.168.15.4:3306/" + db, uname, passwd);
+			con = DriverManager.getConnection("jdbc:mysql://192.168.15.4:3306/" + db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=EST", uname, passwd);
 		}
 		return con;
 	}
