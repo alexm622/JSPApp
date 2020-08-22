@@ -45,7 +45,8 @@ public class PostPage {
 		
 		String sql = "SELECT * FROM forums.Posts WHERE parentThread=? AND id=?";
 		
-		PreparedStatement stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, 
+                ResultSet.CONCUR_UPDATABLE);
 		
 		//set the parameters
 		stmt.setLong(1, threadID);

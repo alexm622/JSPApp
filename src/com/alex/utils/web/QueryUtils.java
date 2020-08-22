@@ -2,6 +2,8 @@ package com.alex.utils.web;
 
 import java.util.HashMap;
 
+import com.alex.utils.Debug;
+
 public class QueryUtils {
 
 	public static HashMap<String, String> splitQuery(String s){
@@ -19,8 +21,10 @@ public class QueryUtils {
 		
 		//split up on the equals key
 		for(String value : keys) {
-			String k = value.split("=", 1)[0];
-			String v = value.split("=", 1)[1];
+			Debug.debug("the value of value is " + value);
+			String k = value.split("=")[0];
+			Debug.debug("the value of k is " + k);
+			String v = value.split("=")[1];
 			
 			//add the key and value
 			hm.put(k, v);

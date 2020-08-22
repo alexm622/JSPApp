@@ -12,7 +12,8 @@ public class UserUtils {
 		
 		String sql = "SELECT username FROM Users WHERE id=?";
 		
-		PreparedStatement stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, 
+                ResultSet.CONCUR_UPDATABLE);
 		
 		stmt.setLong(1, id);
 		
